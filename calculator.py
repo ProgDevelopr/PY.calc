@@ -1,8 +1,9 @@
 import numpy as np
 
 try:
-    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++) ")
-    if a!="%2" and a!="SR" and a!="O" and a!="+++":
+    print("Made by PyDev")
+    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~) ")
+    if a!="%2" and a!="SR" and a!="O" and a!="+++" and a!="~":
         a_number = int(input("Select a number: "))
         a_number_again = int(input("Select another number: "))
         oh = a_number * a_number_again
@@ -36,13 +37,14 @@ try:
     elif a=="%2":
         if evenorodd%2==0:
             print(f"{evenorodd} is an even number")
-        elif evenorodd%2==0:
+        elif not evenorodd%2==0:
             print(f"{evenorodd} is an odd number")
     elif a=="--":
         print(f"{a_number} - {a_number_again} = {a_number - a_number_again}")
     elif a=="SR":
-        a_number = int(input("Select a number: "))
-        print(f"The square root of {a_number} is {a_number * a_number}")
+        a_number = int(input("Select a number to square: "))
+        b = a_number * a_number
+        print(f"The square of {a_number} is {b}. The square root of {b} is {int(np.sqrt(b))}")
     elif a=="O":
         a_number = float(input("Select a number: "))
         print(f"The rounded value of {a_number} is {round(a_number)}")
@@ -50,12 +52,22 @@ try:
     elif a=="+++":
         liste = []
         while True:
-            abc = int(input("Please enter your numbers and type 0 to have your answer: "))
+            abc = int(input("Please enter your numbers and type -1 to have your answer: "))
             liste.append(abc)
-            if abc==0:
+            if abc==-1:
                 liste.pop(-1)
                 AO = int(np.mean(liste))
                 print(f"Arithmetic average of your numbers are {AO}, The float of that number is {float(AO)}")
+                break
+    elif a=="~":
+        liste = []
+        while True:
+            abc = int(input("Please enter your numbers and type -1 to have your answer: "))
+            liste.append(abc)
+            if abc==-1:
+                liste.pop(-1)
+                AO = int(np.median(liste))
+                print(f"The median of your numbers is {AO}, The float of that number is {float(AO)}")
                 break
         
 except ValueError:
