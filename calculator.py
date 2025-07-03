@@ -6,11 +6,12 @@ try:
     
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n** = Exponents\n% = Percentages")
     print("%2 = Even or odd\n-- = Subtraction with negative numbers\nSR = Square and square root\nO = Rounding")
-    print("+++ = Artihmetic addition\n~ = Median\nF = Factorial\nABS = Absolute value\n")
+    print("+++ = Artihmetic addition\n~ = Median\n! = Factorial\nABS = Absolute value\nCA = Circle Area")
+    print("Cir = Circumference of the circle\n")
     
-    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~,!,ABS) ")
+    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~,!,ABS,CA,Cir) ")
     
-    if a!="%2" and a!="SR" and a!="O" and a!="+++" and a!="~" and a!="!" and a!="ABS":
+    if a!="%2" and a!="SR" and a!="O" and a!="+++" and a!="~" and a!="!" and a!="ABS" and a.upper()!="CA" and a.lower()!="cir":
         a_number = int(input("Select a number: "))
         a_number_again = int(input("Select another number: "))
         oh = a_number * a_number_again
@@ -88,9 +89,14 @@ try:
                 break
     
     elif a=="!":
-        factnum = int(input("Enter a number: "))
-        fact = mt.factorial(factnum)
-        print(f"The factorial of {factnum} is {fact}")
+        while True:
+            factnum = int(input("Enter a number: "))
+            if factnum==0:
+                print("Sorry, but you can't use 0 in factorial calculations")
+            elif factnum!=0:
+                fact = mt.factorial(factnum)
+                print(f"The factorial of {factnum} is {fact}")
+                break
     
     elif a=="ABS":
         while True:
@@ -100,6 +106,28 @@ try:
                 break
             except ValueError:
                 print("Please enter a number.")
+    
+    elif a.upper()=="CA":
+        while True:
+            try:    
+                pi = int(input("Enter pi: "))
+                radius = int(input("Enter radius:"))
+                radiussqr = radius * radius
+                print(f"The area of your circle is {int(radiussqr * pi)}")
+                break
+            except ValueError:
+                print("Please enter a number.")
+    
+    elif a.lower()=="cir":
+        while True:
+            try:
+                pi = float(input("Enter pi: "))
+                diameter = float(input("Enter diameter:"))
+                print(f"The circumference of your circle is {int(diameter * pi)}, the float of that number is {float(diameter * pi)}")
+                break
+            except ValueError:
+                print("Please enter a number.")
+
 except ValueError:
     print("An error has accured, please make sure you have typed a number")
 except ZeroDivisionError:
