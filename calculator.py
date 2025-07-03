@@ -11,7 +11,7 @@ try:
     
     a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~,!,ABS,CA,Cir) ")
     
-    if a!="%2" and a!="SR" and a!="O" and a!="+++" and a!="~" and a!="!" and a!="ABS" and a.upper()!="CA" and a.lower()!="cir":
+    if a!="%2" and a.upper()!="SR" and a.upper()!="O" and a!="+++" and a!="~" and a!="!" and a.upper()!="ABS" and a.upper()!="CA" and a.lower()!="cir":
         a_number = int(input("Select a number: "))
         a_number_again = int(input("Select another number: "))
         oh = a_number * a_number_again
@@ -56,12 +56,12 @@ try:
     elif a=="--":
         print(f"{a_number} - {a_number_again} = {a_number - a_number_again}")
     
-    elif a=="SR":
+    elif a.upper()=="SR":
         a_number = int(input("Select a number to square: "))
         b = a_number * a_number
         print(f"The square of {a_number} is {b}. The square root of {b} is {int(np.sqrt(b))}")
     
-    elif a=="O":
+    elif a.upper()=="O":
         a_number = float(input("Select a number: "))
         print(f"The rounded value of {a_number} is {round(a_number)}")
         print("PLEASE NOTE THAT IF YOU ROUND number.5 IT IS BANKER'S ROUNDING AND IT MIGHT BE WRONG")
@@ -98,7 +98,7 @@ try:
                 print(f"The factorial of {factnum} is {fact}")
                 break
     
-    elif a=="ABS":
+    elif a.upper()=="ABS":
         while True:
             try:    
                 a_number = int(input("Enter a number: "))
