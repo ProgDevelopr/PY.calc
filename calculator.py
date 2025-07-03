@@ -8,9 +8,9 @@ try:
     print("%2 = Even or odd\n-- = Subtraction with negative numbers\nSR = Square and square root\nO = Rounding")
     print("+++ = Artihmetic addition\n~ = Median\nF = Factorial\nABS = Absolute value\n")
     
-    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~,F,ABS) ")
+    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~,!,ABS) ")
     
-    if a!="%2" and a!="SR" and a!="O" and a!="+++" and a!="~" and a!="F" and a!="ABS":
+    if a!="%2" and a!="SR" and a!="O" and a!="+++" and a!="~" and a!="!" and a!="ABS":
         a_number = int(input("Select a number: "))
         a_number_again = int(input("Select another number: "))
         oh = a_number * a_number_again
@@ -87,7 +87,7 @@ try:
                 print(f"The median of your numbers is {AO}, The float of that number is {float(AO)}")
                 break
     
-    elif a=="F":
+    elif a=="!":
         factnum = int(input("Enter a number: "))
         fact = mt.factorial(factnum)
         print(f"The factorial of {factnum} is {fact}")
