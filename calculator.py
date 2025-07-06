@@ -4,12 +4,12 @@ import math as mt
 try:
     print("Made by PyDev")
     
-    print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n** = Exponents\n% = Percentages")
+    print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents\n% = Percentages")
     print("%2 = Even or odd\n-- = Subtraction with negative numbers\nSR = Square and square root\nO = Rounding")
     print("+++ = Artihmetic addition\n~ = Median\n! = Factorial\nABS = Absolute value\nCA = Circle Area")
     print("Cir = Circumference of the circle\n")
     
-    a = input("Please select a symbol: (+,-,*,/,**,%,%2,--,SR,O,+++,~,!,ABS,CA,Cir) ")
+    a = input("Please select a symbol: (+,-,*,/,//%,**,%,%2,--,SR,O,+++,~,!,ABS,CA,Cir) ")
     
     if a!="%2" and a.upper()!="SR" and a.upper()!="O" and a!="+++" and a!="~" and a!="!" and a.upper()!="ABS" and a.upper()!="CA" and a.lower()!="cir":
         a_number = int(input("Select a number: "))
@@ -18,7 +18,7 @@ try:
     
     elif a=="%2":
         evenorodd = int(input("Select a number: "))
-    
+
     if a=="+":
        print(f"{a_number} + {a_number_again} = {a_number + a_number_again}") 
 
@@ -40,6 +40,16 @@ try:
             print(f"{a_number} / {a_number_again} = {a_number / a_number_again}")
         elif a_number == a_number_again:
             print(f"{a_number} / {a_number_again} = 1")
+    elif a=="//%":
+        if a_number < a_number_again:
+            print(f"{a_number_again} // {a_number} = {a_number_again // a_number}")
+            print(f"{a_number_again} % {a_number} = {a_number_again % a_number}")
+        elif a_number > a_number_again:
+            print(f"{a_number} // {a_number_again} = {a_number // a_number_again}")
+            print(f"{a_number} % {a_number_again} = {a_number % a_number_again}")
+        elif a_number == a_number_again:
+            print(f"{a_number} // {a_number_again} = 1")
+    
     
     elif a=="**":
         print(f"{a_number} ** {a_number_again} = {a_number ** a_number_again}")
@@ -62,9 +72,12 @@ try:
         print(f"The square of {a_number} is {b}. The square root of {b} is {int(np.sqrt(b))}")
     
     elif a.upper()=="O":
-        a_number = float(input("Select a number: "))
-        print(f"The rounded value of {a_number} is {round(a_number)}")
-        print("PLEASE NOTE THAT IF YOU ROUND number.5 IT IS BANKER'S ROUNDING AND IT MIGHT BE WRONG")
+        a = float(input("Enter a decimal number: "))
+        if a >= 0:
+            rounded = mt.floor(a + 0.5)
+        else:
+            rounded = mt.ceil(a - 0.5)
+        print(f"Rounded version of {a} is {rounded}")
     
     elif a=="+++":
         liste = []
