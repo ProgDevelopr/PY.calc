@@ -74,12 +74,12 @@ try:
     elif a.upper()=="SR":
         a_number = int(input("Select a number to square: "))
         b = a_number * a_number
-        print(f"The square of {a_number} is {b}. The square root of {a_number} is {int(np.sqrt(a_number))}")
+        print(f"The square of {a_number} is {b:.2f}. The square root of {a_number} is {np.sqrt(a_number):.2f}")
     
     elif a.upper()=="CR":
         a_number = int(input("Select a number to cube: "))
         cube = float(a_number ** 3)
-        print(f"The cube of {a_number} is {int(cube)}. The cube root of {a_number} is {int(np.cbrt(a_number))}")
+        print(f"The cube of {a_number} is {cube:.2f}. The cube root of {a_number} is {np.cbrt(a_number):.2f}")
     
     elif a.upper()=="O":
         a = float(input("Enter a decimal number: "))
@@ -220,12 +220,12 @@ try:
     elif a.upper()=="COS":
         adj = float(input("Enter the adjacent edge: "))
         hyp = float(input("Enter the hypotenuse: "))
-        print(f"The sin of {adj} and {hyp} is {adj/hyp:.2f}")
+        print(f"The cos of {adj} and {hyp} is {adj/hyp:.2f}")
     
     elif a.upper()=="TAN":
         adj = float(input("Enter the adjacent edge: "))
         opp = float(input("Enter the opposite edge: "))
-        print(f"The sin of {opp} and {adj} is {opp/adj:.2f}")
+        print(f"The tan of {opp} and {adj} is {opp/adj:.2f}")
 
     elif a.upper()=="PT":
         HYPorEdge = str(input("Would you like to calculate the hypotenuse or an edge? (HYP,EDGE): "))
@@ -244,21 +244,23 @@ try:
         elif HYPorEdge.upper()=="EDGE":
             AnEdge = float(input("Enter the value of an edge: "))
             hyp = float(input("Enter the value of hypotenuse: "))
-            def EDGEcal(a,b):
-                a *= a
-                b *= b
-                c = b - a
-                answer = np.sqrt(c)
-                print(f"The other edge of {b} (hypotenuse) and {a} is {answer:.2f}")
-            EDGEcal(AnEdge,hyp)
+            if hyp < AnEdge:
+                print("An error has accured, the hypotenuse was smaller than the edge you provided.")
+            elif not hyp < AnEdge:
+                def EDGEcal(a,b):
+                    a *= a
+                    b *= b
+                    c = b - a
+                    answer = np.sqrt(c)
+                    print(f"The other edge of {b} (hypotenuse) and {a} is {answer:.2f}")
+                EDGEcal(AnEdge,hyp)
+            else:
+                print("An error has accured")
 
-
-            
-    
     else:
         print("Please choose a mode.")
 
 except ValueError:
-    print("An error has accured, please make sure you have typed a number")
+    print("An error has accured, please make sure you have typed a number.")
 except ZeroDivisionError:
     print("An error has accured while dividing number with 0.")
