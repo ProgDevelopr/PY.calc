@@ -4,48 +4,57 @@ import math as mt
 try:
     print("Made by PyDev")
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents")
-    print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nSR = Square and square root")
-    print("CR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median\n! = Factorial\nABS = Absolute value")
-    print("CA = Circle Area\nCir = Circumference of the circle\nLCM = Least common multiple\nGCD = Greatest common divisor")
-    print("S = Sign\nLOG = Logarithm\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nPT = Pythagorean theorem")
+    print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
+    print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median\n! = Factorial")
+    print("ABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle\nLCM = Least common multiple")
+    print("GCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant")
+    print("SEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
     
-    a = input("Please select a symbol: (+,-,*,/,//%,**,%,%2,--,SR,CR,O,+++,~,!,ABS,CA,Cir,LCM,GCD,S,LOG,SIN,COS,TAN,PT) ")
-    
-    if a not in ["%2","+++","!","~","%","**"] and a.upper() not in ["SR","CR","O","ABS","CA","LCM", \
-    "GCD","CIR","S","LOG","SIN","COS","TAN","PT"]:
-        
-        a_number = float(input("Select a number: "))
-        a_number_again = float(input("Select another number: "))
-        oh = a_number * a_number_again
+    a = input("Please select a symbol: (+,-,*,/,//%,**,%,%2,--,PR,SR,CR,O,+++,~,!,ABS,CA,Cir,LCM,GCD,S,LOG,SIN,COS,TAN,PT) ")
+    print()
 
     if a=="+":
-       print(f"{float(a_number)} + {float(a_number_again)} = {a_number + a_number_again}") 
+        a_number = float(input("Select a number: "))
+        a_number_again = float(input("Select another number: "))
+        print(f"{float(a_number)} + {float(a_number_again)} = {a_number + a_number_again}") 
 
     elif a=="-":
+        a_number = float(input("Select a number: "))
+        a_number_again = float(input("Select another number: "))
+        
         if a_number < a_number_again:
-            print(f"{a_number_again} - {a_number} = {a_number_again - a_number}")
+            print(f"{a_number_again} - {a_number} = {a_number_again - a_number:.2f}")
         elif a_number > a_number_again:
-            print(f"{a_number} - {a_number_again} = {a_number - a_number_again}")
+            print(f"{a_number} - {a_number_again} = {a_number - a_number_again:.2f}")
         elif a_number == a_number_again:
             print(f"{a_number} - {a_number_again} = 0")
 
     elif a=="*":
-        print(f"{float(a_number)} * {a_number_again} = {a_number * a_number_again}")
+        a_number = float(input("Select a number: "))
+        a_number_again = float(input("Select another number: "))
+        print(f"{a_number} * {a_number_again} = {a_number * a_number_again}")
 
     elif a=="/":
+        a_number = float(input("Select a number: "))
+        a_number_again = float(input("Select another number: "))
+        
         if a_number < a_number_again:
-            print(f"{a_number_again} / {a_number} = {a_number_again / a_number}")
+            print(f"{a_number_again} / {a_number} = {a_number_again / a_number:.2f}")
         elif a_number > a_number_again:
-            print(f"{a_number} / {a_number_again} = {a_number / a_number_again}")
+            print(f"{a_number} / {a_number_again} = {a_number / a_number_again:.2f}")
         elif a_number == a_number_again:
             print(f"{a_number} / {a_number_again} = 1")
+    
     elif a=="//%":
+        a_number = float(input("Select a number: "))
+        a_number_again = float(input("Select another number: "))
+        
         if a_number < a_number_again:
-            print(f"{a_number_again} // {a_number} = {a_number_again // a_number}")
-            print(f"{a_number_again} % {a_number} = {a_number_again % a_number}")
+            print(f"{a_number_again} // {a_number} = {a_number_again // a_number:.2f}")
+            print(f"{a_number_again} % {a_number} = {a_number_again % a_number:.2f}")
         elif a_number > a_number_again:
-            print(f"{a_number} // {a_number_again} = {a_number // a_number_again}")
-            print(f"{a_number} % {a_number_again} = {a_number % a_number_again}")
+            print(f"{a_number} // {a_number_again} = {a_number // a_number_again:.2f}")
+            print(f"{a_number} % {a_number_again} = {a_number % a_number_again:.2f}")
         elif a_number == a_number_again:
             print(f"{a_number} // {a_number_again} = 1")
     
@@ -53,13 +62,13 @@ try:
     elif a=="**":
         a_number = int(input("Enter a number: "))
         power = int(input("Enter the power: "))
-        print(f"{a_number} ** {power} = {a_number ** power}")
+        print(f"{a_number} ** {power} = {a_number ** power:.2f}")
     
     elif a=="%":
         a_percentage = int(input("Enter the percentage: "))
         a_number = int(input("Enter a number: "))
         perpro = a_number * a_percentage
-        print(f"The {a_percentage}% of {a_number} is {perpro/100}")
+        print(f"The {a_percentage}% of {a_number} is {perpro/100:.2f}")
     
     elif a=="%2":
         evenorodd = int(input("Select a number: "))
@@ -69,7 +78,22 @@ try:
             print(f"{evenorodd} is an odd number")
     
     elif a=="--":
-        print(f"{a_number} - {a_number_again} = {a_number - a_number_again}")
+        a_number = float(input("Select a number: "))
+        a_number_again = float(input("Select another number: "))
+        print(f"{a_number} - {a_number_again} = {a_number - a_number_again:.2f}")
+
+    elif a.upper()=="PR":
+        a_number = int(input("Enter a number: "))
+        def isprime(num):
+            if num <= 1:
+                print("An error has accured. 1 or below are not prime numbers")
+                return False
+            for i in range(2,int(np.sqrt(num) + 1)):
+                if num % i == 0:
+                    print(f"{int(num)} is not a prime number")
+                    return False
+            print(f"{int(num)} is a prime number")
+        isprime(a_number)
     
     elif a.upper()=="SR":
         a_number = int(input("Select a number to square: "))
@@ -226,6 +250,21 @@ try:
         adj = float(input("Enter the adjacent edge: "))
         opp = float(input("Enter the opposite edge: "))
         print(f"The tan of {opp} and {adj} is {opp/adj:.2f}")
+
+    elif a.upper()=="CSC":
+        hyp = float(input("Enter the hypotenuse: "))
+        opp = float(input("Enter the opposite edge: "))
+        print(f"The cosecant of {hyp} and {opp} is {hyp/opp:.2f}")
+
+    elif a.upper()=="SEC":
+        hyp = float(input("Enter the hypotenuse: "))
+        adj = float(input("Enter the adjacent edge: "))
+        print(f"The secant of {hyp} and {adj} is {hyp/adj:.2f}")
+    
+    elif a.upper()=="COT":
+        adj = float(input("Enter the adjacent edge: "))
+        opp = float(input("Enter the opposite edge: "))
+        print(f"The cotangent of {adj} and {opp} is {adj/opp:.2f}")
 
     elif a.upper()=="PT":
         HYPorEdge = str(input("Would you like to calculate the hypotenuse or an edge? (HYP,EDGE): "))
