@@ -174,16 +174,28 @@ try:
                 print("Please enter a number.")
     
     elif a.upper()=="ARCLEN":
-        Pi = float(input("Enter pi: "))
-        Angle = float(input("Enter angle: "))
-        Radius = float(input("Enter the radius: "))
-        def arclenght(angle,pi,rad):
-            pi = 2 * pi
-            value = pi * rad
-            value = value * angle
-            value = value / 360
-            print(f"The arc length of your circle sector is {value:.2f}.")
-        arclenght(Angle,Pi,Radius)
+        try:
+            Pi = float(input("Enter pi (3,3.14): "))
+            Angle = float(input("Enter angle: "))
+            Radius = float(input("Enter the radius: "))
+            if Radius==0 or Radius < 0:
+                print("An error has accured. Radius being negative (-) or 0 is impossible in math")
+            elif Angle==0:
+                print("The arc length of your circle is 0 (No angle)")
+            elif Angle < 0:
+                print("An error has accured. Angles being negative (-) is impossible in math")
+            elif Angle > 0:
+                def arclenght(angle,pi,rad):
+                    pi = 2 * pi
+                    value = pi * rad
+                    value = value * angle
+                    value = value / 360
+                    print(f"The arc length of your circle sector is {value:.2f}.")
+                arclenght(Angle,Pi,Radius)
+            else:
+                print("An error has accured. Please make sure you have typed a number")
+        except ValueError:
+            print("An error has accured. Please enter a number")
     
     elif a.upper()=="LCM":
         liste = []
