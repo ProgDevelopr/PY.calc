@@ -10,7 +10,7 @@ try:
     print("GCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant")
     print("SEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
     
-    a = input("Please select a symbol: (+,-,*,/,//%,**,%,%2,--,PR,SR,CR,O,+++,~,!,ABS,CA,Cir,LCM,GCD,S,LOG,SIN,COS,TAN,PT) ")
+    a = input("Enter a mode: (+,-,*,/,//%,**,%,%2,--,PR,SR,CR,O,+++,~,!,ABS,CA,Cir,LCM,GCD,S,LOG,SIN,COS,TAN,CSC,SEC,COT,PT): ")
     print()
 
     if a=="+":
@@ -121,7 +121,7 @@ try:
             if abc==-1:
                 liste.pop(-1)
                 AO = int(np.mean(liste))
-                print(f"Arithmetic average of your numbers are {AO}, The float of that number is {float(AO)}")
+                print(f"Arithmetic average of your numbers is {AO:.2f}.")
                 break
     
     elif a=="~":
@@ -132,7 +132,7 @@ try:
             if abc==-1:
                 liste.pop(-1)
                 AO = np.median(liste)
-                print(f"The median of your numbers is {int(AO)}, The float of that number is {float(AO)}")
+                print(f"The median of your numbers is {AO:.2f}.")
                 break
     
     elif a=="!":
@@ -160,7 +160,7 @@ try:
                 pi = int(input("Enter pi: "))
                 radius = int(input("Enter radius: "))
                 radiussqr = radius * radius
-                print(f"The area of your circle is {int(radiussqr * pi)}. That number in float is {float(radiussqr * pi)}")
+                print(f"The area of your circle is {radiussqr * pi:.2f}.")
                 break
             except ValueError:
                 print("Please enter a number.")
@@ -170,10 +170,11 @@ try:
             try:
                 pi = float(input("Enter pi: "))
                 diameter = float(input("Enter diameter: "))
-                print(f"The circumference of your circle is {int(diameter * pi)}. the float of that number is {float(diameter * pi)}")
+                print(f"The circumference of your circle is {diameter * pi:.2f}.")
                 break
             except ValueError:
                 print("Please enter a number.")
+    
     elif a.upper()=="LCM":
         liste = []
         print("You can add values one by one, and every number must be positive.")
@@ -188,7 +189,7 @@ try:
                     break
                 elif len(liste) >= 2:
                     AO = int(np.lcm.reduce(liste))
-                    print(f"\nThe least common multiple of your numbers is {int(AO)}. The float of that number is {float(AO)}")
+                    print(f"\nThe least common multiple of your numbers is {AO:.2f}.")
                     break
             elif abc <= -2 or abc==0:
                 print("Please enter a number that is higher than -1 that is not 0")
@@ -207,7 +208,7 @@ try:
                     break
                 elif len(liste) >= 2:
                     AO = int(np.gcd.reduce(liste))
-                    print(f"\nThe greatest common divisor of your numbers is {int(AO)}. The float of that number is {float(AO)}")
+                    print(f"\nThe greatest common divisor of your numbers is {AO:.2f}.")
                     break
             elif abc <= -2 or abc==0:
                 print("Please enter a number that is higher than -1 that is not 0")
