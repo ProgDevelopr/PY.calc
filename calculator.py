@@ -6,11 +6,11 @@ try:
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents")
     print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median\n! = Factorial")
-    print("ABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle\nLCM = Least common multiple")
-    print("GCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant")
-    print("SEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
+    print("ABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle\nARCLEN = Circle arc length")
+    print("LCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nCOS = Cosine")
+    print("TAN = Tangent\nCSC = Cosecant\nSEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
     
-    a = input("Enter a mode: (+,-,*,/,//%,**,%,%2,--,PR,SR,CR,O,+++,~,!,ABS,CA,Cir,LCM,GCD,S,LOG,SIN,COS,TAN,CSC,SEC,COT,PT): ")
+    a = input("Enter mode: (+,-,*,/,//%,**,%,%2,--,PR,SR,CR,O,+++,~,!,ABS,CA,Cir,ARCLEN,LCM,GCD,S,LOG,SIN,COS,TAN,CSC,SEC,COT,PT): ")
     print()
 
     if a=="+":
@@ -166,14 +166,24 @@ try:
                 print("Please enter a number.")
     
     elif a.upper()=="CIR":
-        while True:
             try:
                 pi = float(input("Enter pi: "))
                 diameter = float(input("Enter diameter: "))
                 print(f"The circumference of your circle is {diameter * pi:.2f}.")
-                break
             except ValueError:
                 print("Please enter a number.")
+    
+    elif a.upper()=="ARCLEN":
+        Pi = float(input("Enter pi: "))
+        Angle = float(input("Enter angle: "))
+        Radius = float(input("Enter the radius: "))
+        def arclenght(angle,pi,rad):
+            pi = 2 * pi
+            value = pi * rad
+            value = value * angle
+            value = value / 360
+            print(f"The arc length of your circle sector is {value:.2f}.")
+        arclenght(Angle,Pi,Radius)
     
     elif a.upper()=="LCM":
         liste = []
