@@ -329,7 +329,7 @@ try:
             def fib(n):
                 a = 0
                 b = 1
-                for looptimes in range(n):
+                for _ in range(n):
                     old_a = a
                     a = b
                     b = old_a + b
