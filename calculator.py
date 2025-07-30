@@ -7,10 +7,11 @@ try:
     print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median\n! = Factorial")
     print("ABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle\nARCLEN = Circle arc length")
-    print("LCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nCOS = Cosine")
-    print("TAN = Tangent\nCSC = Cosecant\nSEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
+    print("LCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nAREA = Area")
+    print("COS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
+    print("F = Fibonacci sequence")
     
-    a = input("Enter mode: (+,-,*,/,//%,**,%,%2,--,PR,SR,CR,O,+++,~,!,ABS,CA,Cir,ARCLEN,LCM,GCD,S,LOG,SIN,COS,TAN,CSC,SEC,COT,PT): ")
+    a = input("Enter mode symbol: ")
     print()
 
     if a=="+":
@@ -90,20 +91,20 @@ try:
                 return False
             for i in range(2,int(np.sqrt(num) + 1)):
                 if num % i == 0:
-                    print(f"{int(num)} is not a prime number")
+                    print(f"{int(num)} is not a prime number.")
                     return False
-            print(f"{int(num)} is a prime number")
+            print(f"{int(num)} is a prime number.")
         isprime(a_number)
     
     elif a.upper()=="SR":
         a_number = int(input("Select a number to square: "))
         b = a_number * a_number
-        print(f"The square of {a_number} is {b:.2f}. The square root of {a_number} is {np.sqrt(a_number):.2f}")
+        print(f"The square of {a_number} is {b:.2f}. The square root of {a_number} is {np.sqrt(a_number):.2f}.")
     
     elif a.upper()=="CR":
         a_number = int(input("Select a number to cube: "))
         cube = float(a_number ** 3)
-        print(f"The cube of {a_number} is {cube:.2f}. The cube root of {a_number} is {np.cbrt(a_number):.2f}")
+        print(f"The cube of {a_number} is {cube:.2f}. The cube root of {a_number} is {np.cbrt(a_number):.2f}.")
     
     elif a.upper()=="O":
         a = float(input("Enter a decimal number: "))
@@ -111,7 +112,7 @@ try:
             rounded = mt.floor(a + 0.5)
         else:
             rounded = mt.ceil(a - 0.5)
-        print(f"Rounded version of {a} is {rounded}")
+        print(f"Rounded version of {a} is {rounded}.")
     
     elif a=="+++":
         liste = []
@@ -139,7 +140,7 @@ try:
         while True:
             factnum = int(input("Enter a number: "))
             if factnum==0:
-                print("Sorry, but you can't use 0 in factorial calculations")
+                print("Sorry, but you can't use 0 in factorial calculations.")
             elif factnum!=0:
                 fact = mt.factorial(factnum)
                 print(f"{factnum}! = {fact}")
@@ -262,62 +263,81 @@ try:
     elif a.upper()=="SIN":
         opp = float(input("Enter the opposite edge: "))
         hyp = float(input("Enter the hypotenuse: "))
-        print(f"The sin of {opp} and {hyp} is {opp/hyp:.2f}")
+        print(f"sin(θ) = {opp/hyp:.2f}")
         
     elif a.upper()=="COS":
         adj = float(input("Enter the adjacent edge: "))
         hyp = float(input("Enter the hypotenuse: "))
-        print(f"The cos of {adj} and {hyp} is {adj/hyp:.2f}")
+        print(f"cos(θ) = {adj/hyp:.2f}")
     
     elif a.upper()=="TAN":
         adj = float(input("Enter the adjacent edge: "))
         opp = float(input("Enter the opposite edge: "))
-        print(f"The tan of {opp} and {adj} is {opp/adj:.2f}")
+        print(f"tan(θ) = {opp/adj:.2f}")
 
     elif a.upper()=="CSC":
         hyp = float(input("Enter the hypotenuse: "))
         opp = float(input("Enter the opposite edge: "))
-        print(f"The cosecant of {hyp} and {opp} is {hyp/opp:.2f}")
+        print(f"csc(θ) = {hyp/opp:.2f}")
 
     elif a.upper()=="SEC":
         hyp = float(input("Enter the hypotenuse: "))
         adj = float(input("Enter the adjacent edge: "))
-        print(f"The secant of {hyp} and {adj} is {hyp/adj:.2f}")
+        print(f"sec(θ) = {hyp/adj:.2f}")
     
     elif a.upper()=="COT":
         adj = float(input("Enter the adjacent edge: "))
         opp = float(input("Enter the opposite edge: "))
-        print(f"The cotangent of {adj} and {opp} is {adj/opp:.2f}")
+        print(f"cot(θ) = {adj/opp:.2f}")
 
     elif a.upper()=="PT":
-        HYPorEdge = str(input("Would you like to calculate the hypotenuse or an edge? (HYP,EDGE): "))
+        print("HYP = Finding the hypotenuse\nEDGE = Finding an edge")
+        HYPorEdge = str(input("Select which edge to calculate: ")).upper()
         
-        if HYPorEdge.upper()=="HYP":
+        if HYPorEdge=="HYP":
             AnEdge = float(input("Enter the value of an edge: "))
             AnotherEdge = float(input("Enter the value of another edge: "))
             def HYPcal(a,b):
-                a *= a
-                b *= b
-                c = a + b
+                asq = a * a
+                bsq = b * b
+                c = asq + bsq
                 answer = np.sqrt(c)
                 print(f"The hypotenuse of {a} and {b} is {answer:.2f}")
             HYPcal(AnEdge,AnotherEdge)
         
-        elif HYPorEdge.upper()=="EDGE":
+        elif HYPorEdge=="EDGE":
             AnEdge = float(input("Enter the value of an edge: "))
             hyp = float(input("Enter the value of hypotenuse: "))
             if hyp < AnEdge:
                 print("An error has accured, the hypotenuse was smaller than the edge you provided.")
             elif not hyp < AnEdge:
-                def EDGEcal(a,b):
-                    a *= a
-                    b *= b
-                    c = b - a
+                def EDGEcal(b,a):
+                    asq = a * a
+                    bsq = b * b
+                    c = bsq - asq
                     answer = np.sqrt(c)
                     print(f"The other edge of {b} (hypotenuse) and {a} is {answer:.2f}")
-                EDGEcal(AnEdge,hyp)
+                EDGEcal(hyp,AnEdge)
             else:
                 print("An error has accured")
+    
+    elif a.upper()=="F":
+        n = int(input("Enter a number: "))
+        if n==0 or n==1:
+            print(f"F({n}) = {n}")
+        elif not n==0 or n==1:
+            def fib(n):
+                a = 0
+                b = 1
+                for looptimes in range(n):
+                    old_a = a
+                    a = b
+                    b = old_a + b
+                return a
+            print(f"F({n}) = {fib(n)}")
+        else:
+            print("An error has accured.")
+            
 
     else:
         print("Please choose a mode.")
