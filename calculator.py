@@ -5,13 +5,13 @@ try:
     print("Made by PyDev")
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents")
     print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
-    print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median\n! = Factorial")
-    print("ABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle\nARCLEN = Circle arc length")
-    print("LCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm\nSIN = Sine\nAREA = Area")
-    print("COS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant\nCOT = Cotangent\nPT = Pythagorean theorem")
-    print("F = Fibonacci sequence")
+    print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median")
+    print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
+    print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
+    print("LN = Natural logarithm\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant\nCOT = Cotangent")
+    print("PT = Pythagorean theorem\nF = Fibonacci sequence")
     
-    a = input("Enter mode symbol: ")
+    a = input("Enter a mode: ")
     print()
 
     if a=="+":
@@ -135,6 +135,24 @@ try:
                 AO = np.median(liste)
                 print(f"The median of your numbers is {AO:.2f}.")
                 break
+    
+    elif a.upper()=="MAX":
+        hold_values = []
+        try:
+            while True:
+                indexing = int(input("Please enter your numbers and type -1 to have your answer: "))
+                if indexing==-1:
+                    hold_values.pop(-0)
+                    print(f"Max value: {mods[0]}, amount of max values: {len(mods)}")
+                    break
+                elif indexing!=-1:
+                    hold_values.append(indexing)
+                a = [indexing]
+                a = np.array(hold_values)
+                maxi = a.max()
+                mods = a[a == maxi]
+        except ValueError:
+            print("An error has accured, please type a number.")
     
     elif a=="!":
         while True:
@@ -260,6 +278,15 @@ try:
                 num = mt.log(des,base)
                 print(f"{base} must be raised to the power of {num:.2f} to get {des}")
     
+    elif a.upper()=="LN":
+        power_of_e = float(input("Enter the power of e (Euler's number): "))
+        e = 2.71828 # e ≈ 2.71828
+        print(f"ln(e ** {power_of_e}) = {power_of_e:.2f}")
+        # ln(e7) = 1096.63, 
+        # base: e
+        # power: 7
+        # destination: 1096.63
+    
     elif a.upper()=="SIN":
         opp = float(input("Enter the opposite edge: "))
         hyp = float(input("Enter the hypotenuse: "))
@@ -321,7 +348,7 @@ try:
             else:
                 print("An error has accured")
     
-    elif a.upper()=="F":
+    elif a.upper()=="F": # Why was this so hard?
         n = int(input("Enter a number: "))
         if n==0 or n==1:
             print(f"F({n}) = {n}")
@@ -329,7 +356,7 @@ try:
             def fib(n):
                 a = 0
                 b = 1
-                for _ in range(n):
+                for looptimes in range(n):
                     old_a = a
                     a = b
                     b = old_a + b
