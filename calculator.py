@@ -2,7 +2,7 @@ import numpy as np
 import math as mt
 
 try:
-    print("Made by PyDev") #e with the power of smth?
+    print("Made by PyDev")
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents")
     print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median")
