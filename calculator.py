@@ -2,14 +2,14 @@ import numpy as np
 import math as mt
 
 try:
-    print("Made by PyDev")
+    print("Made by PyDev") #e with the power of smth?
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents")
     print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median")
     print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
     print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
-    print("LN = Natural logarithm\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant\nCOT = Cotangent")
-    print("PT = Pythagorean theorem\nF = Fibonacci sequence")
+    print("LN = Natural logarithm\ne** = Natural exponential\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant")
+    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence")
     
     a = input("Enter a mode: ")
     print()
@@ -40,9 +40,9 @@ try:
         a_number_again = float(input("Select another number: "))
         
         if a_number < a_number_again:
-            print(f"{a_number_again} / {a_number} = {a_number_again / a_number:.2f}")
+            print(f"{a_number_again} / {a_number} = {a_number_again / a_number:.3f}")
         elif a_number > a_number_again:
-            print(f"{a_number} / {a_number_again} = {a_number / a_number_again:.2f}")
+            print(f"{a_number} / {a_number_again} = {a_number / a_number_again:.3f}")
         elif a_number == a_number_again:
             print(f"{a_number} / {a_number_again} = 1")
     
@@ -276,7 +276,7 @@ try:
                 print("An error has accured. Destination too small.")
             elif base > 0:
                 num = mt.log(des,base)
-                print(f"{base} must be raised to the power of {num:.2f} to get {des}")
+                print(f"{base:.2f} must be raised to the power of {num:.2f} to get {des:.2f}")
     
     elif a.upper()=="LN":
         power_of_e = float(input("Enter the power of e (Euler's number): "))
@@ -286,6 +286,11 @@ try:
         # base: e
         # power: 7
         # destination: 1096.63
+    
+    elif a.upper()=="E**":
+        power_of_e = float(input("Enter the power of e (Euler's number): "))
+        new_e = 2.71828 ** power_of_e
+        print(f"e ** {power_of_e} = {new_e:.3f}")
     
     elif a.upper()=="SIN":
         opp = float(input("Enter the opposite edge: "))
@@ -364,6 +369,9 @@ try:
             print(f"F({n}) = {fib(n)}")
         else:
             print("An error has accured.")
+    
+    elif a.upper()=="I":
+        print(f"PY.cal\nFile path: {__file__}\nMADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}")
             
 
     else:
