@@ -371,7 +371,7 @@ try:
             print("An error has accured.")
     
     elif a.upper()=="I":
-        print(f"PY.cal\nFile path: {__file__}\nMADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}")
+        print(f"PY.calc\nFile path: {__file__}\nMADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}")
             
 
     else:
