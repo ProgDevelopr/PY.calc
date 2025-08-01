@@ -351,7 +351,7 @@ try:
                     print(f"The other edge of {b} (hypotenuse) and {a} is {answer:.2f}")
                 EDGEcal(hyp,AnEdge)
             else:
-                print("An error has accured")
+                print("An error has accured.")
     
     elif a.upper()=="F": # Why was this so hard?
         n = int(input("Enter a number: "))
