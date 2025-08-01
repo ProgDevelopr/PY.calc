@@ -9,7 +9,7 @@ try:
     print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
     print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
     print("LN = Natural logarithm\ne** = Natural exponential\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant")
-    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence")
+    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence\ni = Info")
     
     a = input("Enter a mode: ")
     print()
