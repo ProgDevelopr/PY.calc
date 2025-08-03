@@ -9,7 +9,7 @@ try:
     print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
     print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
     print("LN = Natural logarithm\ne** = Natural exponential\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant")
-    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence\ni = Info")
+    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence\nP = Pell numbers\ni = Info")
     
     a = input("Enter a mode: ")
     print()
@@ -365,8 +365,27 @@ try:
                     old_a = a
                     a = b
                     b = old_a + b
+                    Golden_ratio_φ = 1.618
                 return a
             print(f"F({n}) = {fib(n)}")
+        else:
+            print("An error has accured.")
+
+    elif a.upper()=="P": # Fibonacci to the rescue
+        n = int(input("Enter a number: "))
+        if n==0 or n==1:
+            print(f"P({n}) = {n}")
+        elif not n==0 or n==1:
+            def pell(n):
+                a = 0
+                b = 1
+                for looptimes in range(n):
+                    old_a = a 
+                    a = b 
+                    b = old_a + 2 * b
+                    Silver_ratio_δₛ = 2.414
+                return a
+            print(f"P({n}) = {pell(n)}")
         else:
             print("An error has accured.")
     
