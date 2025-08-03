@@ -157,8 +157,8 @@ try:
     elif a=="!":
         while True:
             factnum = int(input("Enter a number: "))
-            if factnum==0:
-                print("Sorry, but you can't use 0 in factorial calculations.")
+            if factnum<=0:
+                print("Sorry, but you can't use 0 or negative numbers in factorial calculations.")
             elif factnum!=0:
                 fact = mt.factorial(factnum)
                 print(f"{factnum}! = {fact}")
@@ -371,8 +371,12 @@ try:
             print("An error has accured.")
     
     elif a.upper()=="I":
-        print(f"PY.calc\nFile path: {__file__}\nMADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}")
-            
+        if __name__ == "__main__":
+            print(f"PY.calc")
+            print(f"MADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}\nBeing imported: No\nFile path: {__file__}")
+        else:
+            print(f"PY.calc")
+            print(f"MADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}\nBeing imported: Yes\nFile path: {__file__}")
 
     else:
         print("Please choose a mode.")
