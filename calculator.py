@@ -1,15 +1,18 @@
 import numpy as np
 import math as mt
+import sys
 
 try:
     print("Made by PyDev")
     print("+ = Addition\n- = Subtraction\n* = Multiplication\n/ = Division\n//% = Floor division with remainder\n** = Exponents")
-    print("% = Percentages\n%2 = Even or odd\n-- = Subtraction with negative numbers\nPR = Prime checking")
+    print("% = Percentages\n%2 = Even or odd\nASC = Order numbers in ascending order\nDESC = Order numbers in descending order")
+    print("-- = Subtraction with negative numbers\nPR = Prime checking\nPR+ = Series of prime numbers")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic addition\n~ = Median")
     print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
     print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
     print("LN = Natural logarithm\ne** = Natural exponential\nSIN = Sine\nCOS = Cosine\nTAN = Tangent\nCSC = Cosecant\nSEC = Secant")
-    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence\nP = Pell numbers\ni = Info")
+    print("COT = Cotangent\nPT = Pythagorean theorem\nF = Fibonacci sequence\nP = Pell numbers\nB = Bronze sequence")
+    print("C = Copper sequence\ni = info")
     
     a = input("Enter a mode: ")
     print()
@@ -61,22 +64,44 @@ try:
     
     
     elif a=="**":
-        a_number = int(input("Enter a number: "))
-        power = int(input("Enter the power: "))
+        a_number = float(input("Enter a number: "))
+        power = float(input("Enter the power: "))
         print(f"{a_number} ** {power} = {a_number ** power:.2f}")
     
     elif a=="%":
-        a_percentage = int(input("Enter the percentage: "))
-        a_number = int(input("Enter a number: "))
+        a_percentage = float(input("Enter the percentage: "))
+        a_number = float(input("Enter a number: "))
         perpro = a_number * a_percentage
         print(f"The {a_percentage}% of {a_number} is {perpro/100:.2f}")
     
     elif a=="%2":
-        evenorodd = int(input("Select a number: "))
+        evenorodd = float(input("Select a number: "))
         if evenorodd%2==0:
             print(f"{evenorodd} is an even number")
         elif not evenorodd%2==0:
             print(f"{evenorodd} is an odd number")
+
+    elif a.upper()=="ASC":
+        def asc_order(lst):
+            return sorted(lst)
+        lst = []
+        while True:
+            nums = int(input("Please enter your numbers and type -1 to have your answer: "))
+            if nums==-1:
+                print("Ascending order of your numbers are:",asc_order(lst))
+                break
+            lst.append(nums)
+
+    elif a.upper()=="DESC":
+        def desc_order(lst):
+            return sorted(lst,reverse=True)
+        lst = []
+        while True:
+            nums = int(input("Please enter your numbers and type -1 to have your answer: "))
+            if nums==-1:
+                print("Descending order of your numbers are:",desc_order(lst))
+                break
+            lst.append(nums)
     
     elif a=="--":
         a_number = float(input("Select a number: "))
@@ -96,15 +121,44 @@ try:
             print(f"{int(num)} is a prime number.")
         isprime(a_number)
     
+    elif a.upper()=="PR+":
+        end = int(input("Enter ending value: "))
+        
+        def on_prime(num):
+            prime_lst = []
+            lst = []
+            for x in range(2, num + 1):
+                flag = True
+
+            # if i = 2, range(2, 2) is empty, 
+            # meaning the nested loop will do nothing
+                for y in range(2, x):
+                    if x % y == 0:
+                        print(x,"is not prime!")
+                        lst.append(x)
+                        flag = False
+                        break
+        
+                if flag == True:
+                    print(f"{x} is prime!")
+                    prime_lst.append(x)
+            
+            print("\nAll prime numbers mentioned:",prime_lst)
+            print(f"Prime amount: {len(prime_lst)}")
+            print("All non-prime numbers mentioned:",lst)
+            print(f"Non-prime amount: {len(lst)}")
+        
+        on_prime(end)
+    
     elif a.upper()=="SR":
-        a_number = int(input("Select a number to square: "))
+        a_number = float(input("Select a number to square: "))
         b = a_number * a_number
-        print(f"The square of {a_number} is {b:.2f}. The square root of {a_number} is {np.sqrt(a_number):.2f}.")
+        print(f"The square of {a_number} is {b:.3f}. The square root of {a_number} is {np.sqrt(a_number):.3f}.")
     
     elif a.upper()=="CR":
-        a_number = int(input("Select a number to cube: "))
+        a_number = float(input("Select a number to cube: "))
         cube = float(a_number ** 3)
-        print(f"The cube of {a_number} is {cube:.2f}. The cube root of {a_number} is {np.cbrt(a_number):.2f}.")
+        print(f"The cube of {a_number} is {cube:.3f}. The cube root of {a_number} is {np.cbrt(a_number):.3f}.")
     
     elif a.upper()=="O":
         a = float(input("Enter a decimal number: "))
@@ -389,13 +443,53 @@ try:
         else:
             print("An error has accured.")
     
+    elif a.upper()=="B": # Pell to the rescue
+        n = int(input("Enter a number: "))
+        if n==0 or n==1:
+            print(f"B({n}) = {n}")
+        elif not n==0 or n==1:
+            def Bronze(n):
+                a = 0
+                b = 1
+                for looptimes in range(n):
+                    old_a = a 
+                    a = b 
+                    b = old_a + 3 * b
+                    Bronze_ratio_β = 3.302
+                return a
+            print(f"B({n}) = {Bronze(n)}")
+        else:
+            print("An error has accured.")
+
+    elif a.upper()=="C": # Bronze to the rescue
+        n = int(input("Enter a number: "))
+        if n==0 or n==1:
+            print(f"C({n}) = {n}")
+        elif not n==0 or n==1:
+            def copper(n):
+                a = 0
+                b = 1
+                for looptimes in range(n):
+                    old_a = a 
+                    a = b 
+                    b = old_a + 4 * b
+                    Copper_ratio_κ = 4.236
+                return a
+            print(f"C({n}) = {copper(n)}")
+        else:
+            print("An error has accured.")
+
     elif a.upper()=="I":
         if __name__ == "__main__":
             print(f"PY.calc")
-            print(f"MADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}\nBeing imported: No\nFile path: {__file__}")
+            print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
+            print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
+            print(f"Being imported: No\nFile path: {__file__}")
         else:
             print(f"PY.calc")
-            print(f"MADE WITH PYTHON 3.11.4\nNumpy version: {np.__version__}\nBeing imported: Yes\nFile path: {__file__}")
+            print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
+            print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
+            print(f"Being imported: Yes\nFile path: {__file__}")
 
     else:
         print("Please choose a mode.")
@@ -404,3 +498,5 @@ except ValueError:
     print("An error has accured, please make sure you have typed a number.")
 except ZeroDivisionError:
     print("An error has accured while dividing number with 0.")
+
+sys.exit(1)
