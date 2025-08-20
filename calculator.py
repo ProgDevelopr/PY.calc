@@ -125,28 +125,45 @@ try:
         end = int(input("Enter ending value: "))
         
         def on_prime(num):
-            prime_lst = []
-            lst = []
+            prime_lst = set()
+            lst = set()
             for x in range(2, num + 1):
                 flag = True
 
-            # if i = 2, range(2, 2) is empty, 
-            # meaning the nested loop will do nothing
+                # if i = 2, range(2, 2) is empty, 
+                # meaning the nested loop will do nothing
                 for y in range(2, x):
                     if x % y == 0:
-                        print(x,"is not prime!")
-                        lst.append(x)
+                        print(f"{x} is not prime.")
+                        lst.add(x)
                         flag = False
                         break
         
                 if flag == True:
-                    print(f"{x} is prime!")
-                    prime_lst.append(x)
-            
-            print("\nAll prime numbers mentioned:",prime_lst)
-            print(f"Prime amount: {len(prime_lst)}")
-            print("All non-prime numbers mentioned:",lst)
-            print(f"Non-prime amount: {len(lst)}")
+                    print(f"{x} is prime.")
+                    prime_lst.add(x)
+    
+            if num == 1 or num == 0:
+                print("1 and 0 are usually ignored in prime numbers. ")
+                return False
+    
+            if lst == set() and len(prime_lst) == 1:
+                    print("\nAll prime numbers mentioned: {2}")
+                    print(f"Prime amount: {len(prime_lst)}")
+                    print("All non-prime numbers mentioned: {}")
+                    print(f"Non-prime amount: {len(lst)}")
+    
+            elif lst == set() and len(prime_lst) == 0:
+                    print("\nAll prime numbers mentioned: {}")
+                    print(f"Prime amount: {len(prime_lst)}")
+                    print("All non-prime numbers mentioned: {}")
+                    print(f"Non-prime amount: {len(lst)}")
+        
+            else:
+                print("\nAll prime numbers mentioned:",prime_lst)
+                print(f"Prime amount: {len(prime_lst)}")
+                print("All non-prime numbers mentioned:",lst)
+                print(f"Non-prime amount: {len(lst)}")
         
         on_prime(end)
     
