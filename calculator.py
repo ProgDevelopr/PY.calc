@@ -2,12 +2,14 @@ import numpy as np
 import math as mt
 import sys
 
+# 42 modes in August 22!
+
 try:
     print("Made by PyDev")
     print("+ = Addition\nΣ = Sum\n- = Subtraction\n-- = Subtraction with negative numbers\n* = Multiplication\n/ = Division")
-    print("//% = Floor division with remainder\n** = Exponents\n% = Percentages\n%2 = Even or odd")
+    print("//% = Floor division with remainder\nDIV = Divisor finder\n** = Exponents\n% = Percentages\n%2 = Even or odd")
     print("ASC = Order numbers in ascending order\nDESC = Order numbers in descending order")
-    print("PR = Prime checking\nPR+ = Series of prime numbers")
+    print("P = Perfect number checking\nPR = Prime checking\nPR+ = Series of prime numbers\nP! = Prime Factorization")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic mean\n~ = Median")
     print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
     print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
@@ -88,11 +90,30 @@ try:
         elif a_number == a_number_again:
             print(f"{a_number} // {a_number_again} = 1")
     
+    elif a.upper()=="DIV":
+        def divisors(num):
+            for j in range(1, num + 1):
+                lst = []
+                for i in range(1, j):
+                    if j % i == 0:
+                        lst.append(i)
+    #! If the list didn't reset, it would keep the old values and just add values that aren't needed!
+            print(f"Divisors of {num}: {lst}", end="")
+            if len(lst) == 1:
+                print(f", Therefore {num} is a prime number.")
+        number = int(input("Enter a number: "))
+        divisors(number)  
+    
     
     elif a=="**":
-        a_number = float(input("Enter a number: "))
-        power = float(input("Enter the power: "))
-        print(f"{a_number} ** {power} = {a_number ** power:.2f}")
+        try:
+            a_number = float(input("Enter a number: "))
+            power = float(input("Enter the power: "))
+            print(f"{a_number} ** {power} = {a_number ** power:.2f}")
+        except OverflowError:
+            print("An error has accured. The result number might be too big")
+        except ValueError:
+            print("An error has accured")
     
     elif a=="%":
         a_percentage = float(input("Enter the percentage: "))
@@ -128,6 +149,33 @@ try:
                 print("Descending order of your numbers are:",desc_order(lst))
                 break
             lst.append(int(nums))
+    
+    elif a.upper()=="P":
+        def perfect(num):
+            try:
+                lst = []
+    
+                for i in range(1, num):
+                    if num % i == 0:
+                        lst.append(i)
+    
+                if lst and lst[-1] == num:
+                    lst.pop(-1)
+                answer = 0
+    
+                for i in lst:
+                    answer += i
+
+                if answer == num:
+                    print(f"{num} is a perfect number")
+    
+                else:
+                    print(f"{num} is not a perfect number")
+            except ValueError:
+                print("An error has accured, please make sure you have typed a number.")
+        
+        perf_input = int(input(f"Enter a number: "))
+        perfect(perf_input)
 
     elif a.upper()=="PR":
         a_number = int(input("Enter a number: "))
@@ -187,6 +235,22 @@ try:
                 print(f"Non-prime amount: {len(lst)}")
         
         on_prime(end)
+    
+    elif a.upper()=="P!":
+        try:
+            def prime_fact(num):
+                p_fact = []
+                div = 2
+                while num > 1:
+                    while num % div == 0:
+                        p_fact.append(div)
+                        num = num // div
+                    div += 1
+                return p_fact
+            pf = int(input("Enter a number: "))
+            print(f'The prime factorization of {pf} is',prime_fact(pf))
+        except ValueError:
+            print("An error has accured, please make sure you have typed a number.")
     
     elif a.upper()=="SR":
         a_number = float(input("Select a number to square: "))
