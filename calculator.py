@@ -2,14 +2,15 @@ import numpy as np
 import math as mt
 import sys
 
-# 42 modes in August 22!
+# 44 modes so far
 
 try:
     print("Made by PyDev")
-    print("+ = Addition\nΣ = Sum\n- = Subtraction\n-- = Subtraction with negative numbers\n* = Multiplication\n/ = Division")
-    print("//% = Floor division with remainder\nDIV = Divisor finder\n** = Exponents\n% = Percentages\n%2 = Even or odd")
-    print("ASC = Order numbers in ascending order\nDESC = Order numbers in descending order")
-    print("P = Perfect number checking\nPR = Prime checking\nPR+ = Series of prime numbers\nP! = Prime Factorization")
+    print("+ = Addition\nΣ = Sum\n- = Subtraction\n-- = Subtraction with negative numbers\n* = Multiplication")
+    print("*T = Multiplication Table\n**T = Exponential Chart\n/ = Division\n//% = Floor division with remainder")
+    print("DIV = Divisor finder\n** = Exponents\n% = Percentages\n%2 = Even or odd\nASC = Order numbers in ascending order")
+    print("DESC = Order numbers in descending order\nP = Perfect number checking\nPR = Prime checking\nCOP = Coprime checking")
+    print("PR+ = Series of prime numbers\nP! = Prime Factorization")
     print("SR = Square and square root\nCR = Cube and cube root\nO = Rounding\n+++ = Artihmetic mean\n~ = Median")
     print("MAX = Maximum value\n! = Factorial\nABS = Absolute value\nCA = Circle Area\nCir = Circumference of the circle")
     print("ARCLEN = Circle arc length\nLCM = Least common multiple\nGCD = Greatest common divisor\nS = Sign\nLOG = Logarithm")
@@ -17,15 +18,15 @@ try:
     print("COT = Cotangent\nPT = Pythagorean theorem\nMS = Metallic Sequences")
     print("i = info")
     
-    a = input("Enter a mode: ")
+    mode = input("Enter a mode: ").upper()
     print()
 
-    if a=="+":
+    if mode=="+":
         a_number = float(input("Select a number: "))
         a_number_again = float(input("Select another number: "))
         print(f"{a_number} + {a_number_again} = {a_number + a_number_again}") 
     
-    elif a.upper()=="Σ":
+    elif mode=="Σ":
         def sum(lst):
             answer = 0
             for i in lst:
@@ -39,7 +40,7 @@ try:
                 break
             list.append(num)
         
-    elif a=="-":
+    elif mode=="-":
         a_number = float(input("Select a number: "))
         a_number_again = float(input("Select another number: "))
         
@@ -50,7 +51,7 @@ try:
         elif a_number == a_number_again:
             print(f"{a_number} - {a_number_again} = 0")
     
-    elif a=="--":
+    elif mode=="--":
         a_number = float(input("Select a number: "))
         a_number_again = float(input("Select another number: "))
         
@@ -61,12 +62,48 @@ try:
         elif a_number == a_number_again:
             print(f"{a_number} - {a_number_again} = 0")
 
-    elif a=="*":
+    elif mode=="*":
         a_number = float(input("Select a number: "))
         a_number_again = float(input("Select another number: "))
         print(f"{a_number} * {a_number_again} = {a_number * a_number_again}")
+    
+    elif mode=="*T":
+        try:
+            a = int(input("Enter number: "))
+            old_a = a
+            max_val = input("Enter max value ( Enter to skip ): ")
+            print(f"MULTIPLICATION TABLE OF {a}:")
+            if max_val == "":
+                max = 11
+            else:
+                max = int(max_val)
+                max += 1 
+  
+            for i in range(1, max):
+                print(f"{old_a} * {i} = {a}")
+                a += old_a
+        except:
+            print("An error has occured")
 
-    elif a=="/":
+    elif mode=="**T":
+        try:
+            a = int(input("Enter number: "))
+            old_a = a
+            max_val = input("Enter max value ( Enter to skip ): ")
+            print(f"EXPONENTIAL TABLE OF {a}:")
+            if max_val == "":
+                max = 11
+            else:
+                max = int(max_val)
+                max += 1 
+  
+            for i in range(1, max):
+                print(f"{old_a} ** {i} = {a}")
+                a *= old_a
+        except:
+            print("An error has occured")
+
+    elif mode=="/":
         a_number = float(input("Select a number: "))
         a_number_again = float(input("Select another number: "))
         
@@ -77,7 +114,7 @@ try:
         elif a_number == a_number_again:
             print(f"{a_number} / {a_number_again} = 1")
     
-    elif a=="//%":
+    elif mode=="//%":
         a_number = float(input("Select a number: "))
         a_number_again = float(input("Select another number: "))
         
@@ -90,7 +127,7 @@ try:
         elif a_number == a_number_again:
             print(f"{a_number} // {a_number_again} = 1")
     
-    elif a.upper()=="DIV":
+    elif mode=="DIV":
         def divisors(num):
             for j in range(1, num + 1):
                 lst = []
@@ -98,14 +135,15 @@ try:
                     if j % i == 0:
                         lst.append(i)
     #! If the list didn't reset, it would keep the old values and just add values that aren't needed!
+    # Add num itself because you added 1, which counts for every number
+            lst.append(num)
             print(f"Divisors of {num}: {lst}", end="")
             if len(lst) == 1:
                 print(f", Therefore {num} is a prime number.")
         number = int(input("Enter a number: "))
-        divisors(number)  
-    
-    
-    elif a=="**":
+        divisors(number)
+
+    elif mode=="**":
         try:
             a_number = float(input("Enter a number: "))
             power = float(input("Enter the power: "))
@@ -115,20 +153,20 @@ try:
         except ValueError:
             print("An error has accured")
     
-    elif a=="%":
+    elif mode=="%":
         a_percentage = float(input("Enter the percentage: "))
         a_number = float(input("Enter a number: "))
         perpro = a_number * a_percentage
         print(f"The {a_percentage}% of {a_number} is {perpro/100:.2f}")
     
-    elif a=="%2":
+    elif mode=="%2":
         evenorodd = float(input("Select a number: "))
         if evenorodd%2==0:
             print(f"{evenorodd} is an even number")
         elif not evenorodd%2==0:
             print(f"{evenorodd} is an odd number")
 
-    elif a.upper()=="ASC":
+    elif mode.upper()=="ASC":
         def asc_order(lst):
             return sorted(lst)
         lst = []
@@ -139,7 +177,7 @@ try:
                 break
             lst.append(int(nums))
 
-    elif a.upper()=="DESC":
+    elif mode.upper()=="DESC":
         def desc_order(lst):
             return sorted(lst,reverse=True)
         lst = []
@@ -150,7 +188,7 @@ try:
                 break
             lst.append(int(nums))
     
-    elif a.upper()=="P":
+    elif mode.upper()=="P":
         def perfect(num):
             try:
                 lst = []
@@ -177,20 +215,55 @@ try:
         perf_input = int(input(f"Enter a number: "))
         perfect(perf_input)
 
-    elif a.upper()=="PR":
+    elif mode.upper()=="PR":
         a_number = int(input("Enter a number: "))
         def isprime(num):
             if num <= 1:
-                print("An error has accured. 1 or below are not prime numbers")
+                print("An error has occured. 1 or below are not prime numbers")
                 return False
-            for i in range(2,int(np.sqrt(num) + 1)):
+            
+            for i in range(2, int(np.sqrt(num) + 1)):
                 if num % i == 0:
                     print(f"{int(num)} is not a prime number.")
                     return False
+            
             print(f"{int(num)} is a prime number.")
+        
         isprime(a_number)
     
-    elif a.upper()=="PR+":
+    if mode.upper()=="COP":
+        print("You can add values one by one, and every number must be positive!")
+        lst = []
+        
+        while True:
+            abc = int(input("Please enter 2+ numbers and type -1 to have your answer: "))
+            if abc==-1:
+                if len(lst) < 2:
+                    print("An error has accured, please enter more than 2 numbers.")
+                    continue
+                else:
+                    break
+            elif abc <= -2 or abc==0:
+                print("Please enter a number that is higher than -1 that is not 0")
+                continue
+            lst.append(abc)
+        
+        flag = True
+
+        for i in range((n := len(lst))): # Thank python for the walrus operator
+            for j in range(i + 1, n):
+                if mt.gcd(lst[i], lst[j]) != 1:
+                    flag = False
+                    break
+            if not flag:
+                break
+        
+        if flag:
+            print(f"Every pair in {lst} is coprime")
+        else:
+            print(f"Every pair in {lst} is not coprime")
+    
+    elif mode.upper()=="PR+":
         end = int(input("Enter ending value: "))
         
         def on_prime(num):
@@ -236,41 +309,41 @@ try:
         
         on_prime(end)
     
-    elif a.upper()=="P!":
+    elif mode.upper()=="P!":
         try:
             def prime_fact(num):
                 p_fact = []
                 div = 2
                 while num > 1:
                     while num % div == 0:
-                        p_fact.append(div)
+                        p_fact.append(str(div))
                         num = num // div
                     div += 1
-                return p_fact
+                return ' x '.join(p_fact)
             pf = int(input("Enter a number: "))
             print(f'The prime factorization of {pf} is',prime_fact(pf))
         except ValueError:
             print("An error has accured, please make sure you have typed a number.")
     
-    elif a.upper()=="SR":
+    elif mode.upper()=="SR":
         a_number = float(input("Select a number to square: "))
         b = a_number * a_number
         print(f"The square of {a_number} is {b:.3f}. The square root of {a_number} is {np.sqrt(a_number):.3f}")
     
-    elif a.upper()=="CR":
+    elif mode.upper()=="CR":
         a_number = float(input("Select a number to cube: "))
         cube = float(a_number ** 3)
         print(f"The cube of {a_number} is {cube:.3f}. The cube root of {a_number} is {np.cbrt(a_number):.3f}")
     
-    elif a.upper()=="O":
-        a = float(input("Enter a decimal number: "))
-        if a >= 0:
-            rounded = mt.floor(a + 0.5)
+    elif mode.upper()=="O":
+        mode = float(input("Enter a decimal number: "))
+        if mode >= 0:
+            rounded = mt.floor(mode + 0.5)
         else:
-            rounded = mt.ceil(a - 0.5)
-        print(f"Rounded version of {a} is {rounded}.")
+            rounded = mt.ceil(mode - 0.5)
+        print(f"Rounded version of {mode} is {rounded}.")
     
-    elif a=="+++":
+    elif mode=="+++":
         liste = []
         while True:
             abc = input("Please enter your numbers and type 'e' to have your answer: ")
@@ -280,7 +353,7 @@ try:
                 break
             liste.append(int(abc))
     
-    elif a=="~":
+    elif mode=="~":
         liste = []
         while True:
             abc = input("Please enter your numbers and type 'e' to have your answer: ")
@@ -290,7 +363,7 @@ try:
                 break
             liste.append(int(abc))
     
-    elif a.upper()=="MAX":
+    elif mode.upper()=="MAX":
         hold_values = []
         try:
             while True:
@@ -300,14 +373,14 @@ try:
                     break
                 elif indexing!='e':
                     hold_values.append(int(indexing))
-                a = [indexing]
-                a = np.array(hold_values)
-                maxi = a.max()
-                maxs = a[a == maxi]
+                mode = [indexing]
+                mode = np.array(hold_values)
+                maxi = mode.max()
+                maxs = mode[mode == maxi]
         except ValueError:
             print("An error has accured, please type a number.")
     
-    elif a=="!":
+    elif mode=="!":
         while True:
             factnum = int(input("Enter a number: "))
             if factnum<=0:
@@ -317,14 +390,14 @@ try:
                 print(f"{factnum}! = {fact}")
                 break
     
-    elif a.upper()=="ABS":
+    elif mode.upper()=="ABS":
         try:    
             a_number = int(input("Enter a number: "))
             print(f"|{a_number}| = {abs(a_number)}")
         except ValueError:
             print("Please enter a number.")
     
-    elif a.upper()=="CA":
+    elif mode.upper()=="CA":
         try:    
             pi = int(input("Enter pi: "))
             radius = int(input("Enter radius: "))
@@ -333,7 +406,7 @@ try:
         except ValueError:
             print("Please enter a number.")
     
-    elif a.upper()=="CIR":
+    elif mode.upper()=="CIR":
         try:
             pi = float(input("Enter pi: "))
             diameter = float(input("Enter diameter: "))
@@ -341,7 +414,7 @@ try:
         except ValueError:
             print("Please enter a number.")
     
-    elif a.upper()=="ARCLEN":
+    elif mode.upper()=="ARCLEN":
         try:
             Pi = float(input("Enter pi (3,3.14): "))
             Angle = float(input("Enter angle: "))
@@ -365,7 +438,7 @@ try:
         except ValueError:
             print("An error has accured. Please enter a number")
     
-    elif a.upper()=="LCM":
+    elif mode.upper()=="LCM":
         list = []
         print("You can add values one by one, and every number must be positive.")
         
@@ -384,7 +457,7 @@ try:
             elif abc <= -2 or abc==0:
                 print("Please enter a number that is higher than -1 that is not 0")
     
-    elif a.upper()=="GCD":
+    elif mode.upper()=="GCD":
         list = []
         print("You can add values one by one, and every number must be positive!")
         
@@ -401,9 +474,9 @@ try:
                     print(f"\nThe greatest common divisor of your numbers is {AO:.2f}")
                     break
             elif abc <= -2 or abc==0:
-                print("Please enter a number that is higher than -1 that is not 0")
+                print("Please enter a number that is higher than -1 that is not 0.")
     
-    elif a.upper()=="S":
+    elif mode.upper()=="S":
         num = float(input("Type a number: "))
         if num > 0:
             print(f"The sign of {num} is 1")
@@ -414,7 +487,7 @@ try:
         else:
             print("An error has accured. Please choose a number.")
     
-    elif a.upper()=="LOG":
+    elif mode.upper()=="LOG":
         print("Make sure you enter positive numbers (Especially for base number)!")
         base = float(input("Type base number: "))
         if base <= 0 or base == 1:
@@ -427,7 +500,7 @@ try:
                 num = mt.log(des,base)
                 print(f"{base:.2f} must be raised to the power of {num:.2f} to get {des:.2f}")
     
-    elif a.upper()=="LN":
+    elif mode.upper()=="LN":
         power_of_e = float(input("Enter the power of e (Euler's number): "))
         e = 2.71828 # e ≈ 2.71828
         print(f"ln(e ** {power_of_e}) = {power_of_e:.2f}")
@@ -436,42 +509,42 @@ try:
         # power: 7
         # destination: 1096.63
     
-    elif a.upper()=="E**":
+    elif mode.upper()=="E**":
         power_of_e = float(input("Enter the power of e (Euler's number): "))
         new_e = 2.71828 ** power_of_e
         print(f"e ** {power_of_e} = {new_e:.3f}")
     
-    elif a.upper()=="SIN":
+    elif mode.upper()=="SIN":
         opp = float(input("Enter the opposite edge: "))
         hyp = float(input("Enter the hypotenuse: "))
         print(f"sin(θ) = {opp/hyp:.2f}")
         
-    elif a.upper()=="COS":
+    elif mode.upper()=="COS":
         adj = float(input("Enter the adjacent edge: "))
         hyp = float(input("Enter the hypotenuse: "))
         print(f"cos(θ) = {adj/hyp:.2f}")
     
-    elif a.upper()=="TAN":
+    elif mode.upper()=="TAN":
         adj = float(input("Enter the adjacent edge: "))
         opp = float(input("Enter the opposite edge: "))
         print(f"tan(θ) = {opp/adj:.2f}")
 
-    elif a.upper()=="CSC":
+    elif mode.upper()=="CSC":
         hyp = float(input("Enter the hypotenuse: "))
         opp = float(input("Enter the opposite edge: "))
         print(f"csc(θ) = {hyp/opp:.2f}")
 
-    elif a.upper()=="SEC":
+    elif mode.upper()=="SEC":
         hyp = float(input("Enter the hypotenuse: "))
         adj = float(input("Enter the adjacent edge: "))
         print(f"sec(θ) = {hyp/adj:.2f}")
     
-    elif a.upper()=="COT":
+    elif mode.upper()=="COT":
         adj = float(input("Enter the adjacent edge: "))
         opp = float(input("Enter the opposite edge: "))
         print(f"cot(θ) = {adj/opp:.2f}")
 
-    elif a.upper()=="PT":
+    elif mode.upper()=="PT":
         print("HYP = Finding the hypotenuse\nEDGE = Finding an edge\ni = Info")
         HYPorEdge = str(input("Select which edge to calculate: ")).upper()
         
@@ -517,8 +590,9 @@ try:
         else:
             print("Please choose a mode")
     
-    elif a.upper()=="MS":
-        print("F = Fibonacci sequence\nP = Pell numbers\nB = Bronze sequence\nC = Copper sequence\ni = Info")
+    elif mode.upper()=="MS":
+        print("F = Fibonacci sequence\nFS = Fibonacci series\nP = Pell numbers\nPS = Pell series\nB = Bronze sequence")
+        print("BS = Broze series\nC = Copper sequence\nCS = Copper series\ni = Info")
         seq = str(input("Enter a metallic sequence: "))
         
         if seq.upper()=="F": # Why was this so hard?
@@ -539,6 +613,26 @@ try:
             else:
                 print("An error has accured.")
 
+        elif seq.upper()=="FS":
+            n = int(input("Enter a number: "))
+            if n < 2:
+                print(f"F({n}) = {n}")
+            elif not n==0 or n==1:
+                def fib(n):
+                    a = 0
+                    b = 1
+                    F = 0
+                    print("F(0) = 0")
+                    for looptimes in range(n):
+                        F += 1
+                        old_a = a
+                        a = b
+                        b = old_a + b
+                        print(f"F({F}) = {a}")
+                fib(n)
+            else:
+                print("An error has accured.")
+
         elif seq.upper()=="P": # Fibonacci to the rescue
             n = int(input("Enter a number: "))
             if n==0 or n==1:
@@ -549,11 +643,32 @@ try:
                     b = 1
                     for looptimes in range(n):
                         old_a = a 
-                        a = b 
+                        a = b
                         b = old_a + 2 * b
                         Silver_ratio_δₛ = 2.414
                     return a
                 print(f"P({n}) = {pell(n)}")
+            else:
+                print("An error has accured.")
+
+        elif seq.upper()=="PS":
+            n = int(input("Enter a number: "))
+            if n==0 or n==1:
+                print(f"P({n}) = {n}")
+            elif not n==0 or n==1:
+                def pell(n):
+                    a = 0
+                    b = 1
+                    P = 0
+                    print("P(0) = 0")
+                    for looptimes in range(n):
+                        P += 1
+                        old_a = a
+                        a = b
+                        print(f"P({P}) = {a}")
+                        b = old_a + 2 * b
+                        Silver_ratio_δₛ = 2.414
+                pell(n)
             else:
                 print("An error has accured.")
     
@@ -575,6 +690,26 @@ try:
             else:
                 print("An error has accured.")
 
+        elif seq.upper()=="BS":
+            n = int(input("Enter a number: "))
+            if n==0 or n==1:
+                print(f"B({n}) = {n}")
+            elif not n==0 or n==1:
+                def Bronze(n):
+                    a = 0
+                    b = 1
+                    B = 0
+                    print("B(0) = 0")
+                    for looptimes in range(n):
+                        B += 1
+                        old_a = a 
+                        a = b 
+                        b = old_a + 3 * b
+                        print(f"B({B}) = {a}")
+                Bronze(n)
+            else:
+                print("An error has accured.")
+
         elif seq.upper()=="C": # Bronze to the rescue
             n = int(input("Enter a number: "))
             if n==0 or n==1:
@@ -593,6 +728,27 @@ try:
             else:
                 print("An error has accured.")
 
+        elif seq.upper()=="CS":
+            n = int(input("Enter a number: "))
+            if n==0 or n==1:
+                print(f"C({n}) = {n}")
+            elif not n==0 or n==1:
+                def copper(n):
+                    a = 0
+                    b = 1
+                    C = 0
+                    print("C(0) = 0")
+                    for looptimes in range(n):
+                        C += 1
+                        old_a = a 
+                        a = b 
+                        b = old_a + 4 * b
+                        print(f"C({C}) = {a}")
+                    return a
+                copper(n)
+            else:
+                print("An error has accured.")
+
         elif seq.upper()=="I":
             if __name__ == "__main__":
                 print(f"PY.calc")
@@ -608,7 +764,7 @@ try:
         else:
             print("Please choose a mode")
 
-    elif a.upper()=="I":
+    elif mode.upper()=="I":
         if __name__ == "__main__":
             print(f"PY.calc")
             print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
@@ -628,4 +784,4 @@ except ValueError:
 except ZeroDivisionError:
     print("An error has accured while dividing number with 0.")
 
-sys.exit(1)
+sys.exit(0)
