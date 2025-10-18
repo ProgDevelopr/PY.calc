@@ -64,7 +64,7 @@ try:
             a_number_again = float(input("Select another number: "))
             print(f"{a_number} + {a_number_again} = {a_number + a_number_again}") 
         
-        elif mode=="Σ":
+        elif mode in ["Σ","SUM"]:
             def sum(lst):
                 answer = 0
                 for i in lst:
@@ -433,7 +433,7 @@ try:
                     break
                 liste.append(int(abc))
         
-        elif mode=="~":
+        elif mode in ["~","MED"]:
             liste = []
             while True:
                 abc = input("Please enter your numbers and type 'e' to have your answer: ")
