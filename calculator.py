@@ -3,25 +3,25 @@ import math as mt
 import sys
 from os import system, name
 from time import sleep
-from random import randint as rand
+from random import randint as rand, choice as cho
 from collections import Counter
 
 
-# 53 main modes
-# 5 extra modes
+# 56 main modes
+# 6 extra modes
 
 def clear():
     system('cls' if name == 'nt' else 'clear')
 
 
-def close(t, _):
+def close(t, _, msg="Closing"):
     print()
     for _ in range(1, _):
-        print("\rClosing.  ", end="")
+        print(f"\r{msg}.  ", end="")
         sleep(t)
-        print("\rClosing.. ", end="")
+        print(f"\r{msg}.. ", end="")
         sleep(t)
-        print("\rClosing...", end="")
+        print(f"\r{msg}...", end="")
         sleep(t)
     clear()
 
@@ -75,6 +75,7 @@ def mset_func():
         "RN": "Range",
         "MODE": "Mode",
         "DEV": "Deviation",
+        "CG": "Circle graphing",
         "VAR": "Variance",
         "!": "Factorial",
         "||": "Absolute value",
@@ -94,12 +95,15 @@ def mset_func():
         "SEC": "Secant",
         "COT": "Cotangent",
         "PT": "Pythagorean theorem",
+        "PA": "Pressure",
+        "OHM": "Ohm's law",
         "MS": "Metallic Sequences",
     }
     return mset
 
 def emset_func():
     extra_mset = {
+        "TEST": "Math quiz",
         "M": "Display all mode shortcuts",
         "RNG": "Random number generator",
         "i": "info",
@@ -646,6 +650,43 @@ try:
                     break
                 lst.append(int(abc))
 
+        elif mode=="CG":
+            print("| 1 = 360 degree circle\n| 2 = 100% circle\n")
+            mode = int(input("Enter which pie you like: "))
+
+            if mode in (1,360):
+                full = input("Enter the total amount: ")
+                full = full or "360"
+                full = int(full)
+
+                piece = int(input("Enter the segment: "))
+
+                if piece > full:
+                    print("The value you enter must be lower than amount.")
+                else:
+                    old_piece = piece
+                    piece *= 360
+                    piece /= full
+                    print(f"The degree of {old_piece} in {full} is {piece:.3f}")
+
+            elif mode in (2,100):
+                full = input("Enter the full amount: ")
+                full = full or "100"
+                full = int(full)
+
+                piece = int(input("Enter the piece: "))
+
+                if piece > full:
+                    print("The value you enter must be lower than amount.")
+                else:
+                    old_piece = piece
+                    piece *= 100
+                    piece /= full
+                    print(f"The degree of {old_piece} in {full} is {piece:.3f}")
+
+
+
+
         elif mode == "DEV":
             lst = []
             while True:
@@ -857,7 +898,7 @@ try:
             print(f"cot(θ) = {adj / opp:.3f}")
 
         elif mode == "PT":
-            print("HYP = Finding the hypotenuse\nEDGE = Finding an edge\ni = Info")
+            print("| HYP = Finding the hypotenuse\n| EDGE = Finding an edge\n| i = Info")
             HYPorEdge = str(input("Select which edge to calculate: ")).upper()
 
             if HYPorEdge == "HYP":
@@ -908,10 +949,57 @@ try:
             else:
                 print("Please choose a mode")
 
+        elif mode == "PA":
+            force = float(input("Enter force (F): "))
+            surface = float(input("Enter surface area (S): "))
+            pressure = force / surface
+            print(f"Pressure (P) = {pressure} Pa")
+
+        elif mode=="OHM":
+            def Volt(curr, res):
+                return f"Voltage (V) = {curr * res}"
+
+
+            def Current(volt, res):
+                if volt == 0:
+                    return f"ERROR | Sorry, you can't divide numbers by 0\nVolt value (V): {volt} <-"
+                elif res == 0:
+                    return f"ERROR | Sorry, you can't divide numbers by 0\nResistance value (Ω): {res} <-"
+                else:
+                    return f"Current (I) = {volt / res}"
+
+
+            def Resistance(volt, curr):
+                if volt == 0:
+                    return f"ERROR | Sorry, you can't divide numbers by 0\nVolt value (V): {volt} <-"
+                elif curr == 0:
+                    return f"ERROR | Sorry, you can't divide numbers by 0\nCurrent value (A): {curr} <-"
+                else:
+                    return f"Resistance (Ω) = {volt / curr}"
+
+
+            print("| Voltage (V)\n| Current (A)\n| Resistance (Ω)")
+            conv = str(input("Enter one of the modes above: ")).upper()
+
+            if conv in ("VOLTAGE", "V"):
+                curr = float(input("Current (A): "))
+                res = float(input("Resistance (Ω): "))
+                print(Volt(curr, res))
+
+            elif conv in ("CURRENT", "A"):
+                volt = float(input("Voltage (V): "))
+                res = float(input("Resistance (Ω): "))
+                print(Current(volt, res))
+
+            elif conv in ("RESISTANCE", "Ω"):
+                volt = float(input("Voltage (V): "))
+                curr = float(input("Current (A): "))
+                print(Resistance(volt, curr))
+
         elif mode == "MS":
-            print(
-                "F = Fibonacci sequence\nFS = Fibonacci series\nP = Pell numbers\nPS = Pell series\nB = Bronze sequence")
-            print("BS = Broze series\nC = Copper sequence\nCS = Copper series\ni = Info")
+            print("| F = Fibonacci sequence\n| FS = Fibonacci series\n| P = Pell numbers")
+            print("| PS = Pell series\n| B = Bronze sequence")
+            print("| BS = Broze series\n| C = Copper sequence\n| CS = Copper series\ni = Info")
             seq = str(input("Enter a metallic sequence: ")).upper()
 
             if seq == "F":  # Why was this so hard?
@@ -1098,6 +1186,136 @@ try:
 
             else:
                 print("Please choose a mode")
+
+        elif mode=="TEST":
+            amount = input("Enter the required points to pass (ENTER for inf): ")
+            if amount != "":
+                Score = 0
+                IsLast = False
+                clear()
+                while Score < int(amount):
+                    questions = {
+                        "What is the 6th element of the Fibbonacci sequence?": "8",
+                        "(50 + 24) - 100 = ?": "-24",
+                        "Which version of Python was used to make PY.calc?": "3.11.4",
+                        "What is the average of this array: [150, 20, 30]": "100",
+                        "What is the median of this array: [40, 20, 30, 60]": "25",
+                        "(250 / 25) * 5 = ?": "50",
+                        "The signum of -2145629124": "-1",
+                        "Find the GCD of this array: [60, 45, 90, 105]": "15",
+                        "(√16)! = ?": "24",
+                        "abs(-56) = ?": "56",
+                        "Round this number in decimal: 56.6": "57",
+                        "Round this number: 124": "120",
+                        "(√16 ** 2) ** 2 = ?": "256",
+                        "Is 120 a perfect number? (T or F)": "F",
+                    }
+
+                    qk = []
+                    for k in questions.keys():
+                        qk.append(k)
+                    question = cho(qk)
+                    answer = questions[question].lower()
+
+                    print(f"Current score: {Score}")
+                    print(f"{question}")
+                    user_answer = input("Answer: ").strip().lower()
+                    if user_answer in ["e","exit"]:
+                        break
+
+                    elif user_answer == answer:
+                        print(f"Yes! The answer is {answer.upper()}.")
+                        if int(amount) - 1 == Score:
+                            IsLast = True
+                        sleep(0.5)
+                        Score += 1
+                        if not IsLast:
+                            close(0.3, 4, "Generating new question")
+                        else:
+                            break
+
+                    elif user_answer in ["s","skip"]:
+                        if Score != 0:
+                            Score -= 1
+                        close(0.3, 2, "Skipping")
+
+                    else:
+                        print(f"Wrong! The answer is {answer.upper()}.")
+                        close(0.3, 4, "Generating new question")
+
+                close(0.3, 4, "Exiting test")
+                intro()
+
+            else:
+
+                Score = 0
+                clear()
+                q_count = 0
+                while True:
+                    questions = {
+                        "What is the 6th element of the Fibbonacci sequence?": "8",
+                        "(50 + 24) - 100 = ?": "-24",
+                        "Which version of Python was used to make PY.calc?": "3.11.4",
+                        "What is the average of this array: [150, 20, 30]": "100",
+                        "What is the median of this array: [40, 20, 30, 60]": "25",
+                        "(250 / 25) * 5 = ?": "50",
+                        "The signum of -2145629124": "-1",
+                        "Find the GCD of this array: [60, 45, 90, 105]": "15",
+                        "Find the LCM of this array: [6, 15, 90, 57]": "1",
+                        "Find the LCM of this array: [7, 56, 112, 8]": "122",
+                        "Find the GCD of this array: [1, 2, 3, 4, 5, 6, 7]": "1",
+                        "Name the biggest prime factor of 57": "19",
+                        "Name the person who found the unit of pressure": "blaise pascal",
+                        'Name the Scottish inventor that made a unit of power called a "Watt".': "james watt",
+                        "(√16)! = ?": "24",
+                        "abs(-56) = ?": "56",
+                        "Round this number in decimal: 56.6": "57",
+                        "Round this number: 124": "120",
+                        "(√16 ** 2) ** 2 = ?": "256",
+                        "Is 120 a perfect number? (T or F)": "F",
+                        "Is 91 a prime number? (T or F)": "T",
+                        "Is 56 a prime number? (T or F)": "F",
+                        "If the average of an array is 50, what is the deviation of 24?": "-26",
+                        "If the average of an array is 562, what is the deviation of 1000?": "438",
+                        "What is the range of this array: [56, 24, 3, 76, 18, 109]": "106",
+                        "What is the range of this array: [408, 506, 812, 41, 961]": "920",
+                        "What is the range of this array: [0, 1, 51, 801, 1080, 18, 3]": "1080",
+                    }
+
+                    qk = []
+                    for k in questions.keys():
+                        qk.append(k)
+                    question = cho(qk)
+                    answer = questions[question].lower()
+
+                    q_count += 1
+                    print(f"Current score: {Score}")
+                    print(f"Question {q_count}:")
+                    print(f"{question}")
+                    user_answer = input("Answer: ").strip().lower()
+                    if user_answer in ["e","exit"]:
+                        break
+
+                    elif user_answer == answer:
+                        print(f"Yes! The answer is {answer.upper()}.")
+                        sleep(0.5)
+                        close(0.3, 4, "Generating new question")
+                        Score += 1
+
+                    elif user_answer in ["s","skip"]:
+                        if Score != 0:
+                            Score -= 1
+                        close(0.3, 2, "Skipping")
+
+                    else:
+                        print(f"Wrong! The answer is {answer.upper()}.")
+                        close(0.3, 4, "Generating new question")
+
+                close(0.3, 4, "Exiting test")
+                intro()
+
+
+
 
         elif mode == "M":
             lstk = [
