@@ -7,8 +7,21 @@ from random import randint as rand, choice as cho
 from collections import Counter
 
 
-# 56 main modes
-# 6 extra modes
+# 58 main modes
+# 7 extra modes
+
+def def_input(msg, default):
+    prompt = input(msg)
+    if prompt == "":
+        return default
+    else:
+        return int(prompt)
+
+def i_input(msg):
+    return int(input(msg))
+
+def f_input(msg):
+    return float(input(msg))
 
 def clear():
     system('cls' if name == 'nt' else 'clear')
@@ -51,6 +64,7 @@ def mset_func():
         "*T": "Multiplication Table",
         "**T": "Exponential Chart",
         "/": "Division",
+        "\\": "Division with small numbers",
         "//%": "Floor division with remainder",
         "DIV": "Divisor finder",
         "PF": "Prime factors",
@@ -75,13 +89,22 @@ def mset_func():
         "RN": "Range",
         "MODE": "Mode",
         "DEV": "Deviation",
-        "CG": "Circle graphing",
+        "PC": "Pie charts",
         "VAR": "Variance",
         "!": "Factorial",
         "||": "Absolute value",
-        "CA": "Circle Area",
+        "RA": "Rectangle area",
+        "PREC": "Perimeter of a rectangle",
+        "RV": "Rectangular prism volume",
+        "CA": "Circle area",
         "Cir": "Circumference of the circle",
+        "SV": "Sphere volume",
         "ARCLEN": "Circle arc length",
+        "T!": "Triangle inequality",
+        "TA": "Triangle area",
+        "TV": "Triangular prism volume",
+        "CV": "Cylinder volume",
+        "CNV": "Cone volume",
         "LCM": "Least common multiple",
         "GCD": "Greatest common divisor",
         "S": "Sign",
@@ -105,6 +128,9 @@ def emset_func():
     extra_mset = {
         "TEST": "Math quiz",
         "M": "Display all mode shortcuts",
+        "CON": "Unit conversion",
+        "NET": "Exam net calculator",
+        "RAND": "Number guessing game",
         "RNG": "Random number generator",
         "i": "info",
         "CLS": "Clear terminal",
@@ -143,9 +169,8 @@ def intro():
 try:
     mode = ""
     mode_count = intro()
-    condition = True
 
-    while condition:
+    while True:
         mode = input("\nEnter a mode: ").upper().strip()
 
         if mode == "+":
@@ -250,11 +275,16 @@ try:
             a_number_again = float(input("Select another number: "))
 
             if a_number < a_number_again:
-                print(f"{a_number_again} / {a_number} = {a_number_again / a_number:.3f}")
+                print(f"{a_number_again} : {a_number} = {a_number_again / a_number:.3f}")
             elif a_number > a_number_again:
-                print(f"{a_number} / {a_number_again} = {a_number / a_number_again:.3f}")
+                print(f"{a_number} : {a_number_again} = {a_number / a_number_again:.3f}")
             elif a_number == a_number_again:
-                print(f"{a_number} / {a_number_again} = 1")
+                print(f"{a_number} : {a_number_again} = 1")
+
+        elif mode == "\\":
+            a_number = float(input("Select a number: "))
+            a_number_again = float(input("Select another number: "))
+            print(f"{a_number} : {a_number_again} = {a_number / a_number_again}")
 
         elif mode == "//%":
             a_number = float(input("Select a number: "))
@@ -650,7 +680,7 @@ try:
                     break
                 lst.append(int(abc))
 
-        elif mode=="CG":
+        elif mode=="PC":
             print("| 1 = 360 degree circle\n| 2 = 100% circle\n")
             mode = int(input("Enter which pie you like: "))
 
@@ -682,7 +712,7 @@ try:
                     old_piece = piece
                     piece *= 100
                     piece /= full
-                    print(f"The degree of {old_piece} in {full} is {piece:.3f}")
+                    print(f"The precent of {old_piece} in {full} is {piece:.3f}%")
 
 
 
@@ -694,6 +724,7 @@ try:
                 if abc == 'e':
                     print("The deviation of your numbers is:")
                     avg = sum(lst) / len(lst)
+                    print(f"Average: {avg}")
                     for i, k in enumerate(lst):
                         print(f"{k}: {k - avg}")
                     break
@@ -742,6 +773,22 @@ try:
             except ValueError:
                 print("Please enter a number.")
 
+        elif mode=="RA":
+            long = i_input("Enter the long side: ")
+            short = i_input("Enter the short side: ")
+            print(f"The area of your rectangle is {long * short}.")
+
+        elif mode=="PREC":
+            long = i_input("Enter the long side: ")
+            short = i_input("Enter the short side: ")
+            print(f"The perimeter of your rectangle is {(long + short) * 2}.")
+
+        elif mode=="RV":
+            w = i_input("Enter the width: ")
+            l = i_input("Enter the length: ")
+            h = i_input("Enter the height: ")
+            print(f"The volume of your rectangular prism is {w * l * h}.")
+
         elif mode == "CA":
             try:
                 pi = int(input("Enter pi: "))
@@ -759,19 +806,25 @@ try:
             except ValueError:
                 print("Please enter a number.")
 
+        elif mode=="SV":
+            r = i_input("Enter the radius: ")
+            pi = f_input("Enter pi: ")
+            v = ((r ** 3) * pi)*(4/3)
+            print(f"The volume of your sphere is {v}")
+
         elif mode == "ARCLEN":
             try:
                 Pi = float(input("Enter pi (3,3.14): "))
                 Angle = float(input("Enter angle: "))
                 Radius = float(input("Enter the radius: "))
                 if Radius == 0 or Radius < 0:
-                    print("An error has accured. Radius being negative (-) or 0 is impossible in math")
+                    print("An error has accured. Radius being negative (-) or 0 is impossible in math.")
                 elif Angle == 0:
-                    print("The arc length of your circle is 0 (No angle)")
+                    print("The arc length of your circle is 0 (No angle).")
                 elif Angle < 0:
-                    print("An error has accured. Angles being negative (-) is impossible in math")
+                    print("An error has accured. Angles being negative (-) is impossible in math.")
                 elif Angle > 0:
-                    def arclenght(angle, pi, rad):
+                    def arclength(angle, pi, rad):
                         pi = 2 * pi
                         value = pi * rad
                         value = value * angle
@@ -779,13 +832,55 @@ try:
                         print(f"The arc length of your circle sector is {value:.3f}")
 
 
-                    arclenght(Angle, Pi, Radius)
+                    arclength(Angle, Pi, Radius)
                 else:
                     print("An error has accured. Please make sure you have typed a number")
             except ValueError:
                 print("An error has accured. Please enter a number")
+        
+        elif mode=="T!":
+            edge = int(input("Enter an edge: "))
+            edge2 = int(input("Enter another edge: "))
+            
+            if edge <= 0 or edge2 <= 0:
+                print("An error has occured, edges must be positive.")
+            else:
+                edge_dif = abs(edge - edge2)
+                edge_sum = edge + edge2
 
-        elif mode == "LCM":
+                print("Missing edge could be: ")
+                lst = [str(i) for i in range(edge_dif + 1, edge_sum)] #TODO: Practice list comprehensions
+                
+                output = ', '.join(lst)
+                print(f"{output}")
+
+        elif mode=="TA":
+            h = i_input("Enter the height:")
+            b = i_input("Enter the base:")
+            print(f"The area of your triangle is {(h * b) / 2}")
+
+        elif mode=="TV":
+            w = i_input("Enter the width: ")
+            l = i_input("Enter the length: ")
+            h = i_input("Enter the height: ")
+            area = (w * h)/2
+            print(f"The volume of your triangular prism is {area * l}")
+
+        elif mode=="CV":
+            h = i_input("Enter the height: ")
+            r = i_input("Enter the radius: ")
+            pi = f_input("Enter pi: ")
+            v = ((r ** 2) * pi) * h
+            print(f"The volume of your cylinder is {v}")
+
+        elif mode=="CNV":
+            h = i_input("Enter the height: ")
+            r = i_input("Enter the radius: ")
+            pi = f_input("Enter pi: ")
+            v = (((r ** 2) * pi) * h)/3
+            print(f"The volume of your cone is {v}")
+
+        elif mode=="LCM":
             lst = []
             print("You can add values one by one, and every number must be positive.")
 
@@ -1198,17 +1293,34 @@ try:
                         "What is the 6th element of the Fibbonacci sequence?": "8",
                         "(50 + 24) - 100 = ?": "-24",
                         "Which version of Python was used to make PY.calc?": "3.11.4",
-                        "What is the average of this array: [150, 20, 30]": "100",
+                        "What is the average of this array: [150, 20, 30, 0]": "50",
                         "What is the median of this array: [40, 20, 30, 60]": "25",
                         "(250 / 25) * 5 = ?": "50",
                         "The signum of -2145629124": "-1",
                         "Find the GCD of this array: [60, 45, 90, 105]": "15",
+                        "Find the LCM of this array: [6, 15, 90, 57]": "1",
+                        "Find the LCM of this array: [7, 56, 112, 8]": "112",
+                        "Find the GCD of this array: [1, 2, 3, 4, 5, 6, 7]": "1",
+                        "Name the biggest prime factor of 57": "19",
+                        "Name the person who found the unit of pressure": "blaise pascal",
+                        'Name the Scottish inventor that made a unit of power called a "Watt".': "james watt",
                         "(√16)! = ?": "24",
                         "abs(-56) = ?": "56",
                         "Round this number in decimal: 56.6": "57",
                         "Round this number: 124": "120",
                         "(√16 ** 2) ** 2 = ?": "256",
                         "Is 120 a perfect number? (T or F)": "F",
+                        "Is 91 a prime number? (T or F)": "T",
+                        "Is 56 a prime number? (T or F)": "F",
+                        "If the average of an array is 50, what is the deviation of 24?": "-26",
+                        "If the average of an array is 562, what is the deviation of 1000?": "438",
+                        "What is the range of this array: [56, 24, 3, 76, 18, 109]": "106",
+                        "What is the range of this array: [408, 506, 812, 41, 961]": "920",
+                        "What is the range of this array: [0, 1, 51, 801, 1080, 18, 3]": "1080",
+                        "What is the area of a triangle where h = 10 and b = 4": "20",
+                        "What is the volume of a sphere where r = 3? (π = 3)": "108",
+                        "ln(e^78188) = ?": "78188",
+                        "In a triangle: if a = 3 and b = 4, c = ?": "5",
                     }
 
                     qk = []
@@ -1225,14 +1337,11 @@ try:
 
                     elif user_answer == answer:
                         print(f"Yes! The answer is {answer.upper()}.")
-                        if int(amount) - 1 == Score:
-                            IsLast = True
                         sleep(0.5)
                         Score += 1
-                        if not IsLast:
-                            close(0.3, 4, "Generating new question")
-                        else:
+                        if int(amount) == Score:
                             break
+                        close(0.3, 4, "Generating new question")
 
                     elif user_answer in ["s","skip"]:
                         if Score != 0:
@@ -1256,13 +1365,13 @@ try:
                         "What is the 6th element of the Fibbonacci sequence?": "8",
                         "(50 + 24) - 100 = ?": "-24",
                         "Which version of Python was used to make PY.calc?": "3.11.4",
-                        "What is the average of this array: [150, 20, 30]": "100",
+                        "What is the average of this array: [150, 20, 30, 0]": "50",
                         "What is the median of this array: [40, 20, 30, 60]": "25",
                         "(250 / 25) * 5 = ?": "50",
                         "The signum of -2145629124": "-1",
                         "Find the GCD of this array: [60, 45, 90, 105]": "15",
                         "Find the LCM of this array: [6, 15, 90, 57]": "1",
-                        "Find the LCM of this array: [7, 56, 112, 8]": "122",
+                        "Find the LCM of this array: [7, 56, 112, 8]": "112",
                         "Find the GCD of this array: [1, 2, 3, 4, 5, 6, 7]": "1",
                         "Name the biggest prime factor of 57": "19",
                         "Name the person who found the unit of pressure": "blaise pascal",
@@ -1280,6 +1389,10 @@ try:
                         "What is the range of this array: [56, 24, 3, 76, 18, 109]": "106",
                         "What is the range of this array: [408, 506, 812, 41, 961]": "920",
                         "What is the range of this array: [0, 1, 51, 801, 1080, 18, 3]": "1080",
+                        "What is the area of a triangle where h = 10 and b = 4": "20",
+                        "What is the volume of a sphere where r = 3? (π = 3)": "108",
+                        "ln(e^78188) = ?": "78188",
+                        "In a triangle: if a = 3 and b = 4, c = ?": "5",
                     }
 
                     qk = []
@@ -1314,32 +1427,220 @@ try:
                 close(0.3, 4, "Exiting test")
                 intro()
 
-
-
-
         elif mode == "M":
-            lstk = [
-                "+","Σ","-","--","*","*Σ","*T","**T","/","//%","DIV","PF","**","%","%2","ASC","DESC","P",
-                "PR","COP","PR+","P!","SQRT","SQ","CBRT","CB","O","R","+++","~","RN","MODE","DEV","VAR",
-                "!","||","CA","Cir","ARCLEN","LCM","GCD","S","LOG","LN","e**","SIN","COS","TAN","CSC","SEC",
-                "COT","PT","MS","M","RNG","i","CLS","E"
-            ]
+            lst = mset_func()
+            elst = emset_func()
+            nlst = list(lst.keys())
+            enlst = list(elst.keys())
 
-            print(f"Modes:\n{lstk}")
+            print(f"Main modes:\n{nlst}")
+            print(f"\nExtra modes:\n{enlst}")
+
+        elif mode=="CON":
+            print("Welcome to the Converter! It converts Metric units to Imperial units,")
+            print("and Imperial units to Metric units!\n")
+            print("| C = Celcius/Farenheit\n| F = Farenheit/Celcius")
+            print("| LBS = Pounds/Kilograms\n| KG = Kilograms/Pounds")
+            print("| KM = Kilometres/Miles\n| MI = Miles/Kilometres")
+            print("| L = Litres/Gallons\n| GAL = Gallons/Litres")
+            print("| CM = Centimetres/Feet\n| FT = Feet/Centimetres")
+            print("| G = Grams/Ounce\n| OZ = Ounce/Grams")
+            print("| M = Metres/Yards\n| YD = Yards/Metres\n")
+
+            while True:
+                try:
+                    choice = input("What would you like to convert? (Press 'Enter' to quit): ").upper().strip()
+
+                    if choice == "":
+                        print("Goodbye!")
+                        break
+
+                    elif choice.upper() == "C":
+                        def CtoF(value):
+                            value *= 9
+                            value /= 5
+                            value += 32
+                            print(f"Fahrenheit (F): {value:.3f} ️")
+
+
+                        Cvalue = float(input("Celsius (C): "))
+                        CtoF(Cvalue)
+                        break
+
+                    elif choice.upper() == "F":
+                        def FtoC(value):
+                            value -= 32
+                            value *= 5
+                            value /= 9
+                            print(f"Celsius (C): {value:.3f} ️")
+
+
+                        Fvalue = float(input("Fahrenheit (F): "))
+                        FtoC(Fvalue)
+                        break
+
+                    elif choice.upper() == "LBS":
+                        def LBStoKG(value):
+                            value /= 2.20462
+                            print(f"Kilograms (KG): {value:.3f} ")
+
+
+                        libbis = float(input("Pounds (LBS): "))
+                        LBStoKG(libbis)
+                        break
+
+                    elif choice.upper() == "KG":
+                        def KGtoLBS(value):
+                            value *= 2.20462
+                            print(f"Pounds (LBS): {value:.3f} ")
+
+
+                        KGvalue = float(input("Kilograms (KG): "))
+                        KGtoLBS(KGvalue)
+                        break
+
+                    elif choice.upper() == "KM":
+                        def KMtoMi(value):
+                            value *= 0.62
+                            print(f"Miles (Mi): {value:.3f} ")
+
+
+                        KMvalue = float(input("Kilometres (KM): "))
+                        KMtoMi(KMvalue)
+                        break
+
+                    elif choice.upper() == "MI":
+                        def MItoKM(value):
+                            value /= 0.62
+                            print(f"Kilometres (KM): {value:.3f} ️")
+
+
+                        MIvalue = float(input("Miles (Mi): "))
+                        MItoKM(MIvalue)
+                        break
+
+                    elif choice.upper() == "L":
+                        def LtoGAL(value):
+                            value *= 0.264172
+                            print(f"Gallons (GAL): {value:.3f} ")
+
+
+                        Lvalue = float(input("Litres (L): "))
+                        LtoGAL(Lvalue)
+                        break
+
+                    elif choice.upper() == "GAL":
+                        def GALtoL(value):
+                            value /= 0.264172
+                            print(f"Litres (L): {value:.3f} ")
+
+
+                        GALvalue = float(input("Gallons (GAL): "))
+                        GALtoL(GALvalue)
+                        break
+
+                    elif choice.upper() == "CM":
+                        def CMtoFT(value):
+                            value /= 30.48
+                            print(f"Feet (FT): {value:.3f} ")
+
+
+                        CMvalue = float(input("Centimetres (CM): "))
+                        CMtoFT(CMvalue)
+                        break
+
+                    elif choice.upper() == "FT":
+                        def FTtoCM(value):
+                            value *= 30.48
+                            print(f"Centimetres (CM): {value:.3f} ")
+
+
+                        FTvalue = float(input("Feet (FT): "))
+                        FTtoCM(FTvalue)
+                        break
+                    elif choice.upper() == "G":
+                        def GtoOZ(value):
+                            value /= 28.34952
+                            print(f"Ounces (OZ): {value:.3f} ️")
+
+
+                        Gvalue = float(input("Grams (G): "))
+                        GtoOZ(Gvalue)
+                        break
+
+                    elif choice.upper() == "OZ":
+                        def OZtoG(value):
+                            value *= 28.34952
+                            print(f"Grams (G): {value:.3f} ️")
+
+
+                        OZvalue = float(input("Ounces (OZ): "))
+                        OZtoG(OZvalue)
+                        break
+
+                    elif choice.upper() == "M":
+                        def MtoYD(value):
+                            value *= 1.09361
+                            print(f"Yards (YD): {value:.3f} ")
+
+
+                        Mvalue = float(input("Metres (M): "))
+                        MtoYD(Mvalue)
+                        break
+
+                    elif choice.upper() == "YD":
+                        def YDtoM(value):
+                            value /= 1.09361
+                            print(f"Metres (M): {value:.3f} ")
+
+
+                        Mvalue = float(input("Yards (YD): "))
+                        YDtoM(Mvalue)
+                        break
+
+                except ZeroDivisionError:
+                    print("An error has occured. You can't divide by 0.")
+
+        elif mode == "NET":
+            questions_done = int(input("Questions done: "))
+            wrongs = int(input("Wrong questions done: "))
+            net = abs(questions_done - wrongs)
+
+            for _ in range(wrongs):
+                net -= 1/3
+
+            print(f"Net score: ~{net:.2f}")
+
+        elif mode=="RAND":
+            n = rand(1, 100)
+            print("I am thinking of a number from 1 to 100.")
+            while True:
+                guess = int(input("Enter guess: "))
+                
+                if guess < n:
+                    print("Too low! Try again.\n")
+                elif guess > n:
+                    print("Too high! Try again.\n")
+                elif guess == n:
+                    print(f"Yep, i was thinking of {n}.")
+                    break
 
         elif mode == "RNG":
-            most = input("Enter the maximum value: ")
-            most = most or 6
+                most = def_input("Enter the maximum value (Default: 6): ", 6)
 
-            least = input("Enter the minimum value: ")
-            least = least or 1
+                least = def_input("Enter the minimum value (Default: 1): ", 1)
 
-            repeat = input("How many times should this be repeated?: ")
-            repeat = repeat or 1
+                repeat = def_input("How many times should this be repeated? (Default: 3): ", 3)
 
-            for i in range(int(repeat)):
-                print(rand(int(least), int(most)))
+                index = def_input("Enable indexing (1: On | 0: Off): ", 1)
 
+                if int(index) == 1:
+                    for i in range(int(repeat)):
+                        print(f"{i + 1}: {rand(int(least), int(most))}")
+
+                else:
+                    for i in range(int(repeat)):
+                        print(f"{rand(int(least), int(most))}")
 
         elif mode == "I":
             if __name__ == "__main__":
@@ -1361,7 +1662,7 @@ try:
 
         elif mode == "E":
             close(0.3, 4)
-            condition = False
+            break
 
         else:
             print(f'"{mode.lower()}" is not a mode.')
