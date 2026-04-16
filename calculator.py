@@ -1,4 +1,4 @@
-import numpy as np
+from functools import reduce
 import math
 import sys
 from os import system, name
@@ -383,7 +383,7 @@ try:
 
         elif mode == "PF":
             def is_prime(num):
-                for i in range(2, (int(np.sqrt(num)) + 1)):
+                for i in range(2, (int(math.sqrt(num)) + 1)):
                     if num % i == 0:
                         return False
                 else:
@@ -503,7 +503,7 @@ try:
                     print("An error has occured. 1 or below are not prime numbers")
                     return False
 
-                for i in range(2, int(np.sqrt(num) + 1)):
+                for i in range(2, int(math.sqrt(num) + 1)):
                     if num % i == 0:
                         print(f"{int(num)} is not a prime number.")
                         return False
@@ -625,19 +625,19 @@ try:
         elif mode == "SQRT":
             a_number = f_input("Enter a number: ")
             b = a_number * a_number
-            root = np.sqrt(abs(a_number))
+            root = math.sqrt(abs(a_number))
             if a_number < 0:
                 print(f"({a_number}) ** 2 = {b:.3f}")
                 print(f"{a_number} ** 2 = -{b:.3f}")
-                print(f"√{a_number} = ±{np.sqrt(abs(a_number)):.3f}i")
+                print(f"√{a_number} = ±{math.sqrt(abs(a_number)):.3f}i")
             else:
                 print(f"{a_number} ** 2 = {b}")
-                print(f"√{a_number} = {np.sqrt(a_number):.3f}")
+                print(f"√{a_number} = {math.sqrt(a_number):.3f}")
 
         elif mode == "SQ":
             try:
                 a_number = f_input("Enter a number: ")
-                sqrt_number = np.sqrt(a_number)
+                sqrt_number = math.sqrt(a_number)
                 if a_number < 0:
                     print("Cannot calculate negative numbers!")
 
@@ -652,12 +652,12 @@ try:
         elif mode == "CBRT":
             a_number = f_input("Enter a number to cube: ")
             cube = float(a_number ** 3)
-            print(f"3 ** {a_number} = {cube:.3f}\n∛{a_number} = {np.cbrt(a_number):.3f}")
+            print(f"3 ** {a_number} = {cube:.3f}\n∛{a_number} = {math.cbrt(a_number):.3f}")
 
         elif mode == "CB":
             try:
                 a_number = f_input("Enter a number: ")
-                cbrt_number = np.cbrt(a_number)
+                cbrt_number = math.cbrt(a_number)
                 if a_number < 0:
                     print("Cannot calculate negative numbers!")
 
@@ -972,7 +972,7 @@ try:
             r = f_input("Enter the radius: ")
             pi = f_input("Enter pi: ")
             v = pi * (r ** 2) * h
-            print(f"The volume of your cylinder is {v:.3f}")
+            print(f"The volume of your is {v:.3f}")
 
         elif mode=="CNV":
             h = f_input("Enter the height: ")
@@ -995,7 +995,7 @@ try:
                             "An error has accured. This can be caused by too few numbers, or a number being 0 or smaller.")
                         break
                     elif len(lst) >= 2:
-                        AO = int(np.lcm.reduce(lst))
+                        AO = reduce(math.lcm, lst)
                         print(f"\nThe least common multiple of your numbers is {AO:.3f}")
                         break
                 elif abc <= -2 or abc == 0:
@@ -1015,7 +1015,7 @@ try:
                             "An error has accured. This can be caused by too few numbers, or a number being 0 or smaller.")
                         break
                     elif len(lst) >= 2:
-                        AO = int(np.gcd.reduce(lst))
+                        AO = reduce(math.gcd, lst)
                         print(f"\nThe greatest common divisor of your numbers is {AO:.3f}")
                         break
                 elif abc <= -2 or abc == 0:
@@ -1106,7 +1106,7 @@ try:
                     asq = a * a
                     bsq = b * b
                     c = asq + bsq
-                    answer = np.sqrt(c)
+                    answer = math.sqrt(c)
                     print(f"The hypotenuse of {a} and {b} is {answer:.3f}")
 
 
@@ -1122,7 +1122,7 @@ try:
                         asq = a * a
                         bsq = b * b
                         c = bsq - asq
-                        answer = np.sqrt(c)
+                        answer = math.sqrt(c)
                         print(f"The other edge of {b} (hypotenuse) and {a} is {answer:.3f}")
 
 
@@ -1135,13 +1135,11 @@ try:
                     print(f"PY.calc")
                     print(f"Currently {mode_count} modes avaible:\n| {mm_count} main modes,\n| {ucount} utilities.")
                     print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
-                    print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
                     print(f"Being imported: No\nFile path: {__file__}")
                 else:
                     print(f"PY.calc")
                     print(f"Currently {mode_count} modes avaible.")
                     print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
-                    print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
                     print(f"Being imported: Yes\nFile path: {__file__}")
 
             else:
@@ -1431,13 +1429,11 @@ try:
                     print(f"PY.calc")
                     print(f"Currently {mode_count} modes avaible:\n| {mm_count} main modes,\n| {ucount} utilities.")
                     print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
-                    print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
                     print(f"Being imported: No\nFile path: {__file__}")
                 else:
                     print(f"PY.calc")
                     print(f"Currently {mode_count} modes avaible.")
                     print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
-                    print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
                     print(f"Being imported: Yes\nFile path: {__file__}")
 
             else:
@@ -1810,13 +1806,11 @@ try:
                 print(f"PY.calc")
                 print(f"Currently {mode_count} modes avaible:\n| {mm_count} main modes,\n| {ucount} utilities.")
                 print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
-                print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
                 print(f"Being imported: No\nFile path: {__file__}")
             else:
                 print(f"PY.calc")
                 print(f"Currently {mode_count} modes avaible.")
                 print(f"MADE WITH PYTHON 3.11.4 | Current Python version: {sys.version:.6}")
-                print(f"MADE WITH NUMPY 2.3.2 | Current Numpy version: {np.__version__}")
                 print(f"Being imported: Yes\nFile path: {__file__}")
 
         elif mode == "CLS":
