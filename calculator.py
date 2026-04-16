@@ -6,7 +6,7 @@ from time import sleep
 from random import randint as rand, choice as cho
 from collections import Counter
 
-# 70 main modes
+# 71 main modes
 # 9 extra modes
 
 def def_input(msg, default):
@@ -82,13 +82,13 @@ def mset_func():
         "Σ": "Sum",
         "Π": "Product",
         "-": "Subtraction",
-        "--": "Subtraction with negative numbers",
+        "--": "Smart Subtraction",
         "*": "Multiplication",
         "*Σ": "Multiplicated sum",
         "*T": "Multiplication Table",
         "**T": "Exponential Chart",
         "/": "Division",
-        "\\": "Division with small numbers",
+        "\\": "Smart Division",
         "//%": "Floor division with remainder",
         "DIV": "Divisor finder",
         "PF": "Prime factors",
@@ -243,12 +243,7 @@ try:
             a_number = f_input("Select a number: ")
             a_number_again = f_input("Select another number: ")
 
-            if a_number < a_number_again:
-                print(f"{a_number_again} - {a_number} = {a_number_again - a_number:.3f}")
-            elif a_number > a_number_again:
-                print(f"{a_number} - {a_number_again} = {a_number - a_number_again:.3f}")
-            elif a_number == a_number_again:
-                print(f"{a_number} - {a_number_again} = 0")
+            print(f"{a_number} - {a_number_again} = {a_number - a_number_again}")
 
         elif mode == "--":
             a_number = f_input("Select a number: ")
@@ -338,6 +333,11 @@ try:
         elif mode == "/":
             a_number = f_input("Select a number: ")
             a_number_again = f_input("Select another number: ")
+            print(f"{a_number} : {a_number_again} = {a_number / a_number_again}")
+
+        elif mode == "\\":
+            a_number = f_input("Select a number: ")
+            a_number_again = f_input("Select another number: ")
 
             if a_number < a_number_again:
                 print(f"{a_number_again} : {a_number} = {a_number_again / a_number:.3f}")
@@ -345,11 +345,6 @@ try:
                 print(f"{a_number} : {a_number_again} = {a_number / a_number_again:.3f}")
             elif a_number == a_number_again:
                 print(f"{a_number} : {a_number_again} = 1")
-
-        elif mode == "\\":
-            a_number = f_input("Select a number: ")
-            a_number_again = f_input("Select another number: ")
-            print(f"{a_number} : {a_number_again} = {a_number / a_number_again}")
 
         elif mode == "//%":
             a_number = f_input("Select a number: ")
