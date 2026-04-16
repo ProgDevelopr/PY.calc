@@ -215,13 +215,10 @@ try:
                 n = i_input("Enter n: ")
                 end = input("Enter the ending number (inf for infinity): ")
                 print("If you wish to write a term, i will be the number (n).")
-                term = input("Enter a term (Write in Python, optional): ")
+                term = def_input("Enter a term (Write in Python, optional): ","i")
                 if str(end) != "inf":
                     for i in range(n,int(end)+1):
-                        if term:
-                            i2 = eval(term)
-                        else:
-                            i2 = i
+                        i2 = eval(term)
                         sum+=i2
                     print(f"Answer: {sum}")
                 else:
@@ -266,13 +263,10 @@ try:
                 n = i_input("Enter n: ")
                 end = input("Enter the ending number (inf for infinity): ")
                 print("If you wish to write a term, i will be the number (n).")
-                term = input("Enter a term (Write in Python, optional): ")
+                term = def_input("Enter a term (Write in Python, optional): ","i")
                 if str(end) != "inf":
                     for i in range(n,int(end)+1):
-                        if term:
-                            i2 = eval(term)
-                        else:
-                            i2 = i
+                        i2 = eval(term)
                         product*=i
                     print(f"Answer: {product}")
                 else:
